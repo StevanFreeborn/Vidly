@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using Vidly.Models;
 
@@ -18,6 +14,16 @@ namespace Vidly.Controllers
             };
 
             return View(movie);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return Content($"id={id}");
+        }
+
+        public ActionResult Index(int pageIndex = 1, string sortBy = "Name")
+        {
+            return Content($"pageIndex={pageIndex}&sortBy={sortBy}");
         }
     }
 }
