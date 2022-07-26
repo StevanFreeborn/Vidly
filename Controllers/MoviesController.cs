@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
@@ -11,15 +9,15 @@ namespace Vidly.Controllers
     {
         public ActionResult Index()
         {
-            var customers = new List<Customer>
+            var movies = new List<Movie>
             {
-                new Customer { Id = 1, Name = "Stevan Freeborn"},
-                new Customer { Id = 2, Name = "Reece Freeborn"}
+                new Movie { Id = 1, Name = "The Godfather"},
+                new Movie { Id = 2, Name = "The Irishman"}
             };
 
-            var viewModel = new CustomersViewModel
+            var viewModel = new MoviesViewModel
             {
-                Customers = customers
+                Movies = movies
             };
 
 
