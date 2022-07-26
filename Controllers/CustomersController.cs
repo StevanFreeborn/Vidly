@@ -37,6 +37,8 @@ namespace Vidly.Controllers
                 .Where(c => c.Id == id)
                 .FirstOrDefault();
 
+            if (customer is null) return HttpNotFound();
+
             return View(customer);
         }
     }
