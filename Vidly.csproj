@@ -173,54 +173,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207261455182_initialmodel.cs" />
-    <Compile Include="Migrations\202207261455182_initialmodel.designer.cs">
-      <DependentUpon>202207261455182_initialmodel.cs</DependentUpon>
+    <Compile Include="Migrations\202207262157305_InitialMigration.cs" />
+    <Compile Include="Migrations\202207262157305_InitialMigration.designer.cs">
+      <DependentUpon>202207262157305_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207261610562_AddIsSubscribedToCustomer.cs" />
-    <Compile Include="Migrations\202207261610562_AddIsSubscribedToCustomer.designer.cs">
-      <DependentUpon>202207261610562_AddIsSubscribedToCustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207261614216_AddMembershipType.cs" />
-    <Compile Include="Migrations\202207261614216_AddMembershipType.designer.cs">
-      <DependentUpon>202207261614216_AddMembershipType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207261616334_PopulateMembershipType.cs" />
-    <Compile Include="Migrations\202207261616334_PopulateMembershipType.designer.cs">
-      <DependentUpon>202207261616334_PopulateMembershipType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207261839108_ApplyDataAttributesToCustomerName.cs" />
-    <Compile Include="Migrations\202207261839108_ApplyDataAttributesToCustomerName.designer.cs">
-      <DependentUpon>202207261839108_ApplyDataAttributesToCustomerName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207262010543_AddedNameToMembershipType.cs" />
-    <Compile Include="Migrations\202207262010543_AddedNameToMembershipType.designer.cs">
-      <DependentUpon>202207262010543_AddedNameToMembershipType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207262011338_UpdateExistingMembershipTypesWithNameValues.cs" />
-    <Compile Include="Migrations\202207262011338_UpdateExistingMembershipTypesWithNameValues.designer.cs">
-      <DependentUpon>202207262011338_UpdateExistingMembershipTypesWithNameValues.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207262025347_AddBirthdayToCustomerClass.cs" />
-    <Compile Include="Migrations\202207262025347_AddBirthdayToCustomerClass.designer.cs">
-      <DependentUpon>202207262025347_AddBirthdayToCustomerClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207262027457_MakeBirthdayNullable.cs" />
-    <Compile Include="Migrations\202207262027457_MakeBirthdayNullable.designer.cs">
-      <DependentUpon>202207262027457_MakeBirthdayNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207262056509_MakeMembershipTypeNameRequiredAndHaveMaxLength.cs" />
-    <Compile Include="Migrations\202207262056509_MakeMembershipTypeNameRequiredAndHaveMaxLength.designer.cs">
-      <DependentUpon>202207262056509_MakeMembershipTypeNameRequiredAndHaveMaxLength.cs</DependentUpon>
+    <Compile Include="Migrations\202207262158497_AddMembershipTypes.cs" />
+    <Compile Include="Migrations\202207262158497_AddMembershipTypes.designer.cs">
+      <DependentUpon>202207262158497_AddMembershipTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
-    <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
@@ -310,35 +278,11 @@
     <Content Include="Scripts\jquery-3.6.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202207261455182_initialmodel.resx">
-      <DependentUpon>202207261455182_initialmodel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202207262157305_InitialMigration.resx">
+      <DependentUpon>202207262157305_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207261610562_AddIsSubscribedToCustomer.resx">
-      <DependentUpon>202207261610562_AddIsSubscribedToCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207261614216_AddMembershipType.resx">
-      <DependentUpon>202207261614216_AddMembershipType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207261616334_PopulateMembershipType.resx">
-      <DependentUpon>202207261616334_PopulateMembershipType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207261839108_ApplyDataAttributesToCustomerName.resx">
-      <DependentUpon>202207261839108_ApplyDataAttributesToCustomerName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207262010543_AddedNameToMembershipType.resx">
-      <DependentUpon>202207262010543_AddedNameToMembershipType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207262011338_UpdateExistingMembershipTypesWithNameValues.resx">
-      <DependentUpon>202207262011338_UpdateExistingMembershipTypesWithNameValues.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207262025347_AddBirthdayToCustomerClass.resx">
-      <DependentUpon>202207262025347_AddBirthdayToCustomerClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207262027457_MakeBirthdayNullable.resx">
-      <DependentUpon>202207262027457_MakeBirthdayNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207262056509_MakeMembershipTypeNameRequiredAndHaveMaxLength.resx">
-      <DependentUpon>202207262056509_MakeMembershipTypeNameRequiredAndHaveMaxLength.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202207262158497_AddMembershipTypes.resx">
+      <DependentUpon>202207262158497_AddMembershipTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

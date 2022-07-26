@@ -26,7 +26,7 @@ namespace Vidly.Controllers
 
         public ViewResult Random()
         {
-            var movie = new Movie()
+            var movie = new Movie
             {
                 Name = "Shrek!"
             };
