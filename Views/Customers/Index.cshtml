@@ -3,28 +3,57 @@
     ViewBag.Title = "Customers";
 }
 
-<h2>Customers</h2>
+<div class="container">
 
-@if (Model.Customers.Count() > 0)
-{
-    <div>
-        <table class="table table-bordered table-hover">
-            <tr>
-                <th>Customer</th>
-                <th>Membership Type</th>
-            </tr>
-            @foreach (var customer in Model.Customers)
-            {
-                <tr>
-                    <td>@Html.ActionLink(customer.Name, "Edit", new { id = customer.Id })</td>
-                    <td>@customer.MembershipType.Name</td>
-                </tr>
-            }
-        </table>
+    <div class="row">
+
+        <div class="col-6">
+
+            <h2>Customers</h2>
+
+        </div>
+
+        <div class="col-6 text-end">
+
+            @Html.ActionLink("Add Customer", "Add", null, new { @class = "btn btn-sm btn-primary" })
+
+        </div>
+
     </div>
-}
-else
-{
-    <p>We don't have any customers yet.</p>
-}
+
+    <div class="row">
+
+        <div class="col-12">
+
+            @if (Model.Customers.Count() > 0)
+            {
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>Customer</th>
+                        <th>Membership Type</th>
+                    </tr>
+                    @foreach (var customer in Model.Customers)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(customer.Name, "Edit", new { id = customer.Id })</td>
+                            <td>@customer.MembershipType.Name</td>
+                        </tr>
+                    }
+                </table>
+
+            }
+            else
+            {
+                <p>We don't have any customers yet.</p>
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
 

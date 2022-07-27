@@ -3,32 +3,53 @@
 @{
     ViewBag.Title = "Movies";
 }
+<div class="container">
 
-<h2>Movies</h2>
+    <div class="row">
 
-<div class="mb-1">
-    @Html.ActionLink("Add Movie", "Add", null, new { @class = "btn btn-primary"})
+        <div class="col-6">
+
+            <h2>Movies</h2>
+
+        </div>
+
+        <div class="col-6 text-end">
+
+            @Html.ActionLink("Add Movie", "Add", null, new { @class = "btn btn-sm btn-primary" })
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-12">
+
+            @if (Model.Movies.Count() > 0)
+            {
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>Movie</th>
+                        <th>Genre</th>
+                    </tr>
+                    @foreach (var movie in Model.Movies)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(movie.Name, "Edit", new { id = movie.Id })</td>
+                            <td>@movie.Genre.Name</td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>We don't have any movies yet.</p>
+            }
+
+        </div>
+
+    </div>
+
 </div>
 
-@if (Model.Movies.Count() > 0)
-{
-    <div>
-        <table class="table table-bordered table-hover">
-            <tr>
-                <th>Movie</th>
-                <th>Genre</th>
-            </tr>
-            @foreach (var movie in Model.Movies)
-            {
-                <tr>
-                    <td>@Html.ActionLink(movie.Name, "Edit", new { id = movie.Id })</td>
-                    <td>@movie.Genre.Name</td>
-                </tr>
-            }
-        </table>
-    </div>
-}
-else
-{
-    <p>We don't have any movies yet.</p>
-}
+

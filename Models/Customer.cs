@@ -12,6 +12,7 @@ namespace Vidly.Models
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Subscribed to Newsletter?")]
         public bool IsSubscribedToNewsletter { get; set; }
 
         public MembershipType MembershipType { get; set; }
