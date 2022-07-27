@@ -31,41 +31,23 @@ namespace Vidly.Controllers
                 Movies = movies
             };
 
-
             return View(viewModel);
         }
 
-        public ViewResult Random()
+        public ActionResult Details(int id)
         {
-            var movie = new Movie
-            {
-                Name = "Shrek!"
-            };
+            var movie = _context.Movies
+                .Include(m => m.Genre)
+                .SingleOrDefault(m => m.Id == id);
 
-            var customers = new List<Customer>
-            {
-                new Customer { Name = "Customer 1"},
-                new Customer { Name = "Customer 2"}
-            };
+            if (movie is null) return HttpNotFound();
 
-            var viewModel = new RandomMovieViewModel
-            {
-                Movie = movie,
-                Customers = customers
-            };
-
-            return View(viewModel);
+            return View(movie);
         }
 
         public ActionResult Edit(int id)
         {
             return Content($"id={id}");
-        }
-
-        [Route("movies/released/{year}/{month:regex(\\d{4}):range(1,12)}")]
-        public ActionResult ByReleaseDate(int year, int month)
-        {
-            return Content($"{year}/{month}");
         }
     }
 }
