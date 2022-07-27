@@ -1,10 +1,10 @@
 ﻿@model Vidly.ViewModels.CustomerFormViewModel
 
 @{
-    ViewBag.Title = Model.Customer.Name;
+    ViewBag.Title = Model.Customer is null ? "Add Customer" : "Edit Customer";
 }
 
-<h2>@Model.Customer.Name</h2>
+<h2>@(Model.Customer is null ? "Add Customer" : "Edit Customer")</h2>
 
 @using (Html.BeginForm("Save", "Customers"))
 {

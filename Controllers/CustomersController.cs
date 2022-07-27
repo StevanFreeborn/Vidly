@@ -35,17 +35,6 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Details(int id)
-        {
-            var customer = _context.Customers
-                .Include(c => c.MembershipType)
-                .SingleOrDefault(c => c.Id == id);
-
-            if (customer is null) return HttpNotFound();
-
-            return View(customer);
-        }
-
         public ActionResult Add()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
@@ -53,6 +42,23 @@ namespace Vidly.Controllers
             var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes
+            };
+
+            return View("CustomerForm", viewModel);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers
+                .Include(c => c.MembershipType)
+                .SingleOrDefault(c => c.Id == id);
+
+            if (customer is null) return HttpNotFound();
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
             };
 
             return View("CustomerForm", viewModel);
@@ -74,27 +80,10 @@ namespace Vidly.Controllers
                 existingCustomer.MembershipTypeId = customer.MembershipTypeId;
                 existingCustomer.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             }
-            
+
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
-        }
-
-        public ActionResult Edit(int id)
-        {
-            var customer = _context.Customers
-                .Include(c => c.MembershipType)
-                .SingleOrDefault(c => c.Id == id);
-
-            if (customer is null) return HttpNotFound();
-
-            var viewModel = new CustomerFormViewModel
-            {
-                Customer = customer,
-                MembershipTypes = _context.MembershipTypes.ToList()
-            };
-
-            return View("CustomerForm", viewModel);
         }
     }
 }
