@@ -5,7 +5,7 @@
 
 <h2>Customers</h2>
 
-@if (Model.Customers.Count > 0)
+@if (Model.Customers.Count() > 0)
 {
     <div>
         <table class="table table-bordered table-hover">
@@ -16,7 +16,7 @@
             @foreach (var customer in Model.Customers)
             {
                 <tr>
-                    <td>@Html.ActionLink(customer.Name, "Details", new { id = customer.Id })</td>
+                    <td>@Html.ActionLink(customer.Name, "Edit", new { id = customer.Id })</td>
                     <td>@customer.MembershipType.Name</td>
                 </tr>
             }
