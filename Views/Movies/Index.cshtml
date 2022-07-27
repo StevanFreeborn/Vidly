@@ -6,6 +6,10 @@
 
 <h2>Movies</h2>
 
+<div class="mb-1">
+    @Html.ActionLink("Add Movie", "Add", null, new { @class = "btn btn-primary"})
+</div>
+
 @if (Model.Movies.Count() > 0)
 {
     <div>

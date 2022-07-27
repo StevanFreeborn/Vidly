@@ -20,6 +20,7 @@ namespace Vidly.Controllers
         {
             _context.Dispose();
         }
+
         public ActionResult Index()
         {
             var movies = _context.Movies
