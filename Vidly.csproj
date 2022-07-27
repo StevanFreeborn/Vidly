@@ -173,33 +173,30 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207261455182_initialmodel.cs" />
-    <Compile Include="Migrations\202207261455182_initialmodel.designer.cs">
-      <DependentUpon>202207261455182_initialmodel.cs</DependentUpon>
+    <Compile Include="Migrations\202207262157305_InitialMigration.cs" />
+    <Compile Include="Migrations\202207262157305_InitialMigration.designer.cs">
+      <DependentUpon>202207262157305_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207261610562_AddIsSubscribedToCustomer.cs" />
-    <Compile Include="Migrations\202207261610562_AddIsSubscribedToCustomer.designer.cs">
-      <DependentUpon>202207261610562_AddIsSubscribedToCustomer.cs</DependentUpon>
+    <Compile Include="Migrations\202207262158497_AddMembershipTypes.cs" />
+    <Compile Include="Migrations\202207262158497_AddMembershipTypes.designer.cs">
+      <DependentUpon>202207262158497_AddMembershipTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207261614216_AddMembershipType.cs" />
-    <Compile Include="Migrations\202207261614216_AddMembershipType.designer.cs">
-      <DependentUpon>202207261614216_AddMembershipType.cs</DependentUpon>
+    <Compile Include="Migrations\202207262205515_AddGenres.cs" />
+    <Compile Include="Migrations\202207262205515_AddGenres.designer.cs">
+      <DependentUpon>202207262205515_AddGenres.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207261616334_PopulateMembershipType.cs" />
-    <Compile Include="Migrations\202207261616334_PopulateMembershipType.designer.cs">
-      <DependentUpon>202207261616334_PopulateMembershipType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207261839108_ApplyDataAttributesToCustomerName.cs" />
-    <Compile Include="Migrations\202207261839108_ApplyDataAttributesToCustomerName.designer.cs">
-      <DependentUpon>202207261839108_ApplyDataAttributesToCustomerName.cs</DependentUpon>
+    <Compile Include="Migrations\202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.cs" />
+    <Compile Include="Migrations\202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.designer.cs">
+      <DependentUpon>202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
-    <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
@@ -274,11 +271,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Movies\Random.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -289,20 +286,17 @@
     <Content Include="Scripts\jquery-3.6.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202207261455182_initialmodel.resx">
-      <DependentUpon>202207261455182_initialmodel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202207262157305_InitialMigration.resx">
+      <DependentUpon>202207262157305_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207261610562_AddIsSubscribedToCustomer.resx">
-      <DependentUpon>202207261610562_AddIsSubscribedToCustomer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202207262158497_AddMembershipTypes.resx">
+      <DependentUpon>202207262158497_AddMembershipTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207261614216_AddMembershipType.resx">
-      <DependentUpon>202207261614216_AddMembershipType.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202207262205515_AddGenres.resx">
+      <DependentUpon>202207262205515_AddGenres.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207261616334_PopulateMembershipType.resx">
-      <DependentUpon>202207261616334_PopulateMembershipType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207261839108_ApplyDataAttributesToCustomerName.resx">
-      <DependentUpon>202207261839108_ApplyDataAttributesToCustomerName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.resx">
+      <DependentUpon>202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
