@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Vidly.Validators;
 
 namespace Vidly.Models
 {
@@ -21,6 +22,7 @@ namespace Vidly.Models
         [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
 
+        [Min18YearsIfAMember]
         public DateTime? Birthday { get; set; }
     }
 }

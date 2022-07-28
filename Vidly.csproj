@@ -200,6 +200,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Validators\Min18YearsIfAMember.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
     <Compile Include="ViewModels\MovieFormViewModel.cs" />
