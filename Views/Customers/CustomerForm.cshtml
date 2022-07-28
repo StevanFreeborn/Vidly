@@ -21,15 +21,15 @@
                 </div>
 
                 <div class="mb-3">
-                    @Html.LabelFor(m => m.Customer.Birthday, new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.Customer.Birthday, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
-                    @Html.ValidationMessageFor(m => m.Customer.Birthday)
-                </div>
-
-                <div class="mb-3">
                     @Html.LabelFor(m => m.Customer.MembershipTypeId, new { @class = "form-label" })
                     @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.Customer.Birthday, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Customer.Birthday, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(m => m.Customer.Birthday)
                 </div>
 
                 <div class="mb-3 form-check">
