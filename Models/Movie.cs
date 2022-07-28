@@ -25,6 +25,7 @@ namespace Vidly.Models
         public DateTime DateAdded { get; set; } = DateTime.Now;
 
         [Required]
+        [Range(0, int.MaxValue, ErrorMessage = "Number in stock cannot be negative.")]
         [Display(Name = "Number in Stock")]
         public int NumberInStock { get; set; }
     }
