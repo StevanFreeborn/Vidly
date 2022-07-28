@@ -37,12 +37,10 @@ namespace Vidly.Controllers
 
         public ActionResult Add()
         {
-            var membershipTypes = _context.MembershipTypes.ToList();
-
             var viewModel = new CustomerFormViewModel
             {
                 Customer = new Customer(),
-                MembershipTypes = membershipTypes
+                MembershipTypes = _context.MembershipTypes.ToList()
             };
 
             return View("CustomerForm", viewModel);
