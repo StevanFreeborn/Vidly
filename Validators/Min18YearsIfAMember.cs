@@ -10,9 +10,9 @@ namespace Vidly.Validators
         {
             var customer = validationContext.ObjectInstance as Customer;
 
-            if (customer.MembershipTypeId == MembershipType.None || 
+            if (customer.MembershipTypeId == MembershipType.None ||
                 customer.MembershipTypeId == MembershipType.PayAsYouGo)
-            { 
+            {
                 return ValidationResult.Success;
             }
 
@@ -23,8 +23,8 @@ namespace Vidly.Validators
 
             var age = DateTime.Today.Year - customer.Birthday.Value.Year;
 
-            return age >= 18 ? 
-                ValidationResult.Success : 
+            return age >= 18 ?
+                ValidationResult.Success :
                 new ValidationResult("Customer needs to be at least 18 years old.");
         }
     }
