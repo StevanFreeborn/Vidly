@@ -1,7 +1,7 @@
 ﻿@model Vidly.ViewModels.MovieFormViewModel
 
 @{
-    ViewBag.Title = Model.Movie is null ? "Add Movie" : "Edit Movie";
+    ViewBag.Title = Model.Movie.Id is 0 ? "Add Movie" : "Edit Movie";
 }
 
 <div class="container-sm">
@@ -10,7 +10,7 @@
 
         <div class="col-12">
 
-            <h2>@(Model.Movie is null ? "Add Movie" : "Edit Movie")</h2>
+            <h2>@(Model.Movie.Id is 0 ? "Add Movie" : "Edit Movie")</h2>
 
             @using (Html.BeginForm("Save", "Movies"))
             {

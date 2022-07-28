@@ -1,7 +1,7 @@
 ﻿@model Vidly.ViewModels.CustomerFormViewModel
 
 @{
-    ViewBag.Title = Model.Customer is null ? "Add Customer" : "Edit Customer";
+    ViewBag.Title = Model.Customer.Id is 0 ? "Add Customer" : "Edit Customer";
 }
 
 <div class="container-sm">
@@ -10,13 +10,14 @@
 
         <div class="col-12">
 
-            <h2>@(Model.Customer is null ? "Add Customer" : "Edit Customer")</h2>
+            <h2>@(Model.Customer.Id is 0 ? "Add Customer" : "Edit Customer")</h2>
 
             @using (Html.BeginForm("Save", "Customers"))
             {
                 <div class="mb-3">
                     @Html.LabelFor(m => m.Customer.Name, new { @class = "form-label" })
                     @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Customer.Name)
                 </div>
 
                 <div class="mb-3">
@@ -27,6 +28,7 @@
                 <div class="mb-3">
                     @Html.LabelFor(m => m.Customer.MembershipTypeId, new { @class = "form-label" })
                     @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
                 </div>
 
                 <div class="mb-3 form-check">
