@@ -41,5 +41,13 @@ namespace Vidly.ViewModels
         public int? NumberInStock { get; set; }
 
         public IEnumerable<Genre> Genres { get; set; }
+
+        public string Title
+        {
+            get
+            {
+                return Id is 0 ? "Add Movie" : "Edit Movie";
+            }
+        }
     }
 }
