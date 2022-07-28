@@ -1,7 +1,7 @@
 ﻿@model Vidly.ViewModels.CustomerFormViewModel
 
 @{
-    ViewBag.Title = Model.Customer.Id is 0 ? "Add Customer" : "Edit Customer";
+    ViewBag.Title = Model.Title;
 }
 
 <div class="container-sm">
@@ -10,7 +10,7 @@
 
         <div class="col-12">
 
-            <h2>@(Model.Customer.Id is 0 ? "Add Customer" : "Edit Customer")</h2>
+            <h2>@Model.Title</h2>
 
             @using (Html.BeginForm("Save", "Customers"))
             {
