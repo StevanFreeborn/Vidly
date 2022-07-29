@@ -13,18 +13,18 @@ POST https://{{host}}/api/customers
 Content-Type: {{contentType}}
 
 {
-	"Name": "Api Created",
+	"Name": "Api Just now",
 	"IsSubscribedToNewsletter": true,
-	"MembershipTypeId": 4,
+	"MembershipTypeId": 1,
 	"Birthday": "1995-04-21T00:00:00"
 }
 
 
-PUT https://{{host}}/api/customers/10
+PUT https://{{host}}/api/customers/17
 Content-Type: {{contentType}}
 
 {
-	"Name": "Api Created",
+	"Name": "Api Changed Again",
 	"IsSubscribedToNewsletter": true,
 	"MembershipTypeId": 4,
 	"Birthday": "1995-04-21T00:00:00"

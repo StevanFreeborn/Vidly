@@ -19,7 +19,9 @@ namespace Vidly.Dtos
         [Required]
         public byte MembershipTypeId { get; set; }
 
-        [Min18YearsIfAMember]
+        // commented out to avoid except being thrown when trying to add
+        // or update customer via api
+        // [Min18YearsIfAMember]
         public DateTime? Birthday { get; set; }
     }
 }
