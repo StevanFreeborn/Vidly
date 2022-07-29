@@ -1,0 +1,34 @@
+﻿@hostname = localhost
+@port = 44388
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+GET https://{{host}}/api/customers
+
+
+GET https://{{host}}/api/customers/1
+
+
+POST https://{{host}}/api/customers
+Content-Type: {{contentType}}
+
+{
+	"Name": "Api Created",
+	"IsSubscribedToNewsletter": true,
+	"MembershipTypeId": 4,
+	"Birthday": "1995-04-21T00:00:00"
+}
+
+
+PUT https://{{host}}/api/customers/10
+Content-Type: {{contentType}}
+
+{
+	"Name": "Api Created",
+	"IsSubscribedToNewsletter": true,
+	"MembershipTypeId": 4,
+	"Birthday": "1995-04-21T00:00:00"
+}
+
+
+DELETE https://{{host}}/api/customers/10
