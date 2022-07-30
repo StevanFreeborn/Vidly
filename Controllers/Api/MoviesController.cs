@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Http;
 using AutoMapper;
 using Vidly.App_Start;
@@ -19,6 +20,7 @@ namespace Vidly.Controllers.Api
             _mapper = mapperConfig.CreateMapper();
         }
 
+        [HttpGet]
         public IHttpActionResult GetMovies()
         {
             var movies = _context.Movies
@@ -28,6 +30,7 @@ namespace Vidly.Controllers.Api
             return Ok(movies);
         }
 
+        [HttpGet]
         public IHttpActionResult GetMoviesById(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
@@ -37,6 +40,23 @@ namespace Vidly.Controllers.Api
             var movieDto = _mapper.Map<MovieDto>(movie);
 
             return Ok(movieDto);
+        }
+
+        [HttpPost]
+        public IHttpActionResult CreateMovie(MovieDto movieDto)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            var movie = _mapper.Map<Movie>(movieDto);
+
+            _context.Movies.Add(movie);
+            _context.SaveChanges();
+
+            movieDto.Id = movie.Id;
+
+            var resourceUri = new Uri($"{Request.RequestUri}/{movie.Id}");
+
+            return Created(resourceUri, movieDto);
         }
     }
 }
