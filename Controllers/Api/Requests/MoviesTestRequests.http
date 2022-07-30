@@ -1,0 +1,9 @@
+﻿@hostname = localhost
+@port = 44388
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+GET https://{{host}}/api/movies
+
+
+GET https://{{host}}/api/movies/2
