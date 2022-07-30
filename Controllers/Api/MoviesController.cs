@@ -58,5 +58,9 @@ namespace Vidly.Controllers.Api
 
             return Created(resourceUri, movieDto);
         }
+
+        // TODO: Implement UpdateMovie(int id)
+
+        // TODO: Implement DeleteMovie(int id)
     }
 }
