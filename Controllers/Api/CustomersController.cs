@@ -47,7 +47,7 @@ namespace Vidly.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (ModelState.IsValid is false) return BadRequest();
 
             var customer = _mapper.Map<Customer>(customerDto);
 
@@ -64,7 +64,7 @@ namespace Vidly.Controllers.Api
         [HttpPut]
         public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (ModelState.IsValid is false) return BadRequest();
 
             var existingCustomer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
@@ -92,8 +92,5 @@ namespace Vidly.Controllers.Api
             _context.Customers.Remove(existingCustomer);
             _context.SaveChanges();
         }
-
-
-
     }
 }

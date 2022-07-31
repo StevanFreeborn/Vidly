@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
 using AutoMapper;
 using Vidly.App_Start;
@@ -45,7 +46,7 @@ namespace Vidly.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateMovie(MovieDto movieDto)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (ModelState.IsValid is false) return BadRequest();
 
             var movie = _mapper.Map<Movie>(movieDto);
 
@@ -59,8 +60,23 @@ namespace Vidly.Controllers.Api
             return Created(resourceUri, movieDto);
         }
 
-        // TODO: Implement UpdateMovie(int id)
+        [HttpPut]
+        public IHttpActionResult UpdateMovie(int id, MovieDto movieDto)
+        {
+            if (ModelState.IsValid is false) return BadRequest();
 
-        // TODO: Implement DeleteMovie(int id)
+            var existingMovie = _context.Movies.SingleOrDefault(m => m.Id == id);
+
+            if (existingMovie is null) return NotFound();
+
+            _mapper.Map(movieDto, existingMovie);
+
+            _context.SaveChanges();
+
+            movieDto.Id = existingMovie.Id;
+
+            return Ok(movieDto);
+
+        }
     }
 }
