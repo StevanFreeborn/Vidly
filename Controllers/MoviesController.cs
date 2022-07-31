@@ -64,7 +64,7 @@ namespace Vidly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid is false)
             {
                 var viewModel = new MovieFormViewModel(movie)
                 {

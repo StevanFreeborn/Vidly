@@ -31,7 +31,6 @@ namespace Vidly.Controllers
                 Customers = customers
             };
 
-
             return View(viewModel);
         }
 
@@ -67,7 +66,7 @@ namespace Vidly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid is false)
             {
                 var viewModel = new CustomerFormViewModel
                 {
