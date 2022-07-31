@@ -1,0 +1,34 @@
+﻿@hostname = localhost
+@port = 44388
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+GET https://{{host}}/api/movies
+
+
+GET https://{{host}}/api/movies/2
+
+
+POST https://{{host}}/api/movies
+Content-Type: {{contentType}}
+
+{
+	"name": "The Api",
+	"genreId": 1,
+	"releaseDate": "1999-03-24T00:00:00",
+	"numberInStock": 5
+}
+
+
+PUT https://{{host}}/api/movies/4
+Content-Type: {{contentType}}
+
+{
+	"name": "The Api Updated",
+	"genreId": 2,
+	"releaseDate": "1999-03-24T00:00:00",
+	"numberInStock": 5
+}
+
+
+DELETE https://{{host}}/api/movies/5
