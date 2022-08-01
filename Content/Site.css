@@ -6,3 +6,6 @@
     border: 2px solid red;
 }
 
+.btn {
+    text-transform: none;
+}

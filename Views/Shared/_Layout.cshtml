@@ -16,7 +16,7 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     @Html.Partial("_NavBar")
 
@@ -26,17 +26,14 @@
 
     </div>
 
-    <div class="container-fluid">
+
+    <footer class="container-fluid mt-auto py-3">
 
         <hr />
 
-        <footer>
+        <p>&copy; @DateTime.Now.Year - Vidly</p>
 
-            <p>&copy; @DateTime.Now.Year - Vidly</p>
-
-        </footer>
-
-    </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
