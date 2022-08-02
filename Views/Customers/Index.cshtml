@@ -29,49 +29,54 @@
             {
                 <table id="customers-table" class="table table-bordered table-hover">
 
-                    <tr>
-
-                        <th>Customer</th>
-                        <th>Membership Type</th>
-                        <th>Delete</th>
-
-                    </tr>
-
-                    @foreach (var customer in Model.Customers)
-                    {
+                    <thead>
                         <tr>
 
-                            <td>@Html.ActionLink(customer.Name, "Edit", new { id = customer.Id })</td>
-                            <td>@customer.MembershipType.Name</td>
-                            <td>
+                            <th>Customer</th>
+                            <th>Membership Type</th>
+                            <th>Delete</th>
 
-                                <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-modal-@customer.Id">Delete</button>
+                        </tr>
+                    </thead>
 
-                                <div class="modal fade" id="delete-modal-@customer.Id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <tbody>
+                        @foreach (var customer in Model.Customers)
+                        {
+                            <tr>
 
-                                    <div class="modal-dialog modal-dialog-centered">
+                                <td>@Html.ActionLink(customer.Name, "Edit", new { id = customer.Id })</td>
+                                <td>@customer.MembershipType.Name</td>
+                                <td>
 
-                                        <div class="modal-content">
+                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-modal-@customer.Id">Delete</button>
 
-                                            <div class="modal-header">
+                                    <div class="modal fade" id="delete-modal-@customer.Id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 
-                                                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                                        <div class="modal-dialog modal-dialog-centered">
 
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <div class="modal-content">
 
-                                            </div>
+                                                <div class="modal-header">
 
-                                            <div class="modal-body">
+                                                    <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
 
-                                                <p class="m-0">Are you sure you want to delete this customer?</p>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                                            </div>
+                                                </div>
 
-                                            <div class="modal-footer">
+                                                <div class="modal-body">
 
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <p class="m-0">Are you sure you want to delete this customer?</p>
 
-                                                <button data-customer-id="@customer.Id" type="button" class="btn btn-danger btn-delete" data-bs-dismiss="modal">Delete</button>
+                                                </div>
+
+                                                <div class="modal-footer">
+
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                                                    <button data-customer-id="@customer.Id" type="button" class="btn btn-danger btn-delete" data-bs-dismiss="modal">Delete</button>
+
+                                                </div>
 
                                             </div>
 
@@ -79,12 +84,13 @@
 
                                     </div>
 
-                                </div>
+                                </td>
 
-                            </td>
+                            </tr>
 
-                        </tr>
-                    }
+                        }
+                    </tbody>
+
                 </table>
 
             }
@@ -102,9 +108,13 @@
 @section scripts
 {
     <script>
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
 
-            $("#customers-table").on("click", ".btn-delete", function () {
+            $("#customers-table").DataTable();
+
+            $("#customers-table").on("click", ".btn-delete", function ()
+            {
 
                 var button = $(this);
 
