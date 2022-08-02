@@ -1,5 +1,4 @@
-﻿@model Vidly.ViewModels.CustomersViewModel
-@{
+﻿@{
     ViewBag.Title = "Customers";
 }
 
@@ -25,79 +24,22 @@
 
         <div class="col-12">
 
-            @if (Model.Customers.Count() > 0)
-            {
-                <table id="customers-table" class="table table-bordered table-hover">
+            <table id="customers-table" class="table table-bordered table-hover">
 
-                    <thead>
-                        <tr>
+                <thead>
+                    <tr>
 
-                            <th>Customer</th>
-                            <th>Membership Type</th>
-                            <th>Delete</th>
+                        <th>Customer</th>
+                        <th>Membership Type</th>
+                        <th>Delete</th>
 
-                        </tr>
-                    </thead>
+                    </tr>
+                </thead>
 
-                    <tbody>
-                        @foreach (var customer in Model.Customers)
-                        {
-                            <tr>
+                <tbody>
+                </tbody>
 
-                                <td>@Html.ActionLink(customer.Name, "Edit", new { id = customer.Id })</td>
-                                <td>@customer.MembershipType.Name</td>
-                                <td>
-
-                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-modal-@customer.Id">Delete</button>
-
-                                    <div class="modal fade" id="delete-modal-@customer.Id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-
-                                        <div class="modal-dialog modal-dialog-centered">
-
-                                            <div class="modal-content">
-
-                                                <div class="modal-header">
-
-                                                    <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
-
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                                                </div>
-
-                                                <div class="modal-body">
-
-                                                    <p class="m-0">Are you sure you want to delete this customer?</p>
-
-                                                </div>
-
-                                                <div class="modal-footer">
-
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-
-                                                    <button data-customer-id="@customer.Id" type="button" class="btn btn-danger btn-delete" data-bs-dismiss="modal">Delete</button>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                        }
-                    </tbody>
-
-                </table>
-
-            }
-            else
-            {
-                <p>We don't have any customers yet.</p>
-            }
+            </table>
 
         </div>
 
@@ -110,12 +52,67 @@
     <script>
         $(document).ready(function ()
         {
+            $("#customers-table").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, customer)
+                        {
+                            return `<a href="/customers/edit/${customer.id}">${customer.name}</a>`;
+                        }
+                    },
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data)
+                        {
+                            return `<button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-modal-${data}">Delete</button>
+                                        <div class="modal fade" id="delete-modal-${data}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 
-            $("#customers-table").DataTable();
+                                            <div class="modal-dialog modal-dialog-centered">
+
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+
+                                                        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                                                    </div>
+
+                                                    <div class="modal-body">
+
+                                                        <p class="m-0">Are you sure you want to delete this customer?</p>
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                                                        <button data-customer-id="${data}" type="button" class="btn btn-danger btn-delete" data-bs-dismiss="modal">Delete</button>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>`
+                        }
+                    }
+                ]
+            });
 
             $("#customers-table").on("click", ".btn-delete", function ()
             {
-
                 var button = $(this);
 
                 var customerId = button.attr("data-customer-id");
