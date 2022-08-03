@@ -52,7 +52,7 @@
     <script>
         $(document).ready(function ()
         {
-            $("#customers-table").DataTable({
+            var table = $("#customers-table").DataTable({
                 ajax: {
                     url: "/api/customers",
                     dataSrc: ""
@@ -66,7 +66,7 @@
                         }
                     },
                     {
-                        data: "name"
+                        data: "membershipType.name"
                     },
                     {
                         data: "id",
@@ -122,7 +122,10 @@
                     method: "DELETE",
                     success: function ()
                     {
-                        button.parents("tr").remove();
+                        table
+                            .row(button.parents("tr"))
+                            .remove()
+                            .draw();
                     }
                 });
             });

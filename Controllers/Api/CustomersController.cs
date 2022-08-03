@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -26,6 +27,7 @@ namespace Vidly.Controllers.Api
         public IHttpActionResult GetCustomers()
         {
             var customerDtos = _context.Customers
+                .Include(c => c.MembershipType)
                 .ToList()
                 .Select(_mapper.Map<CustomerDto>);
             
