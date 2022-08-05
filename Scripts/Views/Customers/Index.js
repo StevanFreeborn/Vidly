@@ -1,31 +1,45 @@
 ﻿$(document).ready(() => {
-    GetCustomers().then(customers => CreateCustomersTable(customers));
+    GetCustomers()
+        .then(customers => CreateCustomersTable(customers))
+        .catch(err => {
+            console.log(err);
+            alert(getCustomersErrorMessage);
+        });
 });
+
+const getCustomersErrorMessage = 'Unable to get customers. Please try again.';
 
 const GetCustomers = async () => {
     const res = await fetch(`/api/customers`);
+
+    if (!res.ok) return alert(getCustomersErrorMessage);
+
     return await res.json();
 }
 
+const DeleteCustomer = async (id) => {
+    return await fetch(`/api/customers/${id}`, { method: 'DELETE' });
+}
+
 const CreateCustomersTable = (customers) => {
-    var table = $("#customers-table").DataTable({
+    const table = $('#customers-table').DataTable({
         responsive: true,
         data: customers,
         columns: [
             {
-                title: "Name",
-                data: "name",
+                title: 'Name',
+                data: 'name',
                 render: (data, type, customer) => {
                     return `<a href="/customers/edit/${customer.id}">${customer.name}</a>`;
                 }
             },
             {
-                title: "Membership Type",
-                data: "membershipType.name"
+                title: 'Membership Type',
+                data: 'membershipType.name'
             },
             {
-                title: "Delete",
-                data: "id",
+                title: 'Delete',
+                data: 'id',
                 render: (data) => {
                     return `<button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-modal-${data}">Delete</button>
                                         <div class="modal fade" id="delete-modal-${data}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -66,21 +80,26 @@ const CreateCustomersTable = (customers) => {
         ]
     });
 
-    $("#customers-table").on("click", ".btn-delete", (e) => {
+    $('#customers-table').on('click', '.btn-delete', (e) => {
 
-        var button = $(e.currentTarget);
+        const button = $(e.currentTarget);
 
-        var customerId = button.attr("data-customer-id");
+        const customerId = button.attr('data-customer-id');
 
-        $.ajax({
-            url: `/api/customers/${customerId}`,
-            method: "DELETE",
-            success: () => {
+        const errorMessage = 'Unable to delete customer. Please try again.';
+
+        DeleteCustomer(customerId)
+            .then(res => {
+                if (!res.ok) return alert(errorMessage);
+
                 table
-                    .row(button.parents("tr"))
+                    .row(button.parents('tr'))
                     .remove()
                     .draw();
-            }
-        });
+            })
+            .catch(err => {
+                console.log(err);
+                alert(errorMessage);
+            });
     });
 }
