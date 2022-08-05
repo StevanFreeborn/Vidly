@@ -210,6 +210,10 @@
     <Compile Include="Migrations\202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.designer.cs">
       <DependentUpon>202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208052306559_SeedUsers.cs" />
+    <Compile Include="Migrations\202208052306559_SeedUsers.designer.cs">
+      <DependentUpon>202208052306559_SeedUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="ViewModels\AddPhoneNumberViewModel.cs" />
@@ -700,6 +704,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.resx">
       <DependentUpon>202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208052306559_SeedUsers.resx">
+      <DependentUpon>202208052306559_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
