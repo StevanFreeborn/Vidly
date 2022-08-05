@@ -1,5 +1,6 @@
 ﻿$(document).ready(() => {
     var table = $("#customers-table").DataTable({
+        responsive: true,
         ajax: {
             url: "/api/customers",
             dataSrc: ""
@@ -56,8 +57,9 @@
         ]
     });
 
-    table.on("click", ".btn-delete", () => {
-        var button = $(this);
+    $("#customers-table").on("click", ".btn-delete", (e) => {
+
+        var button = $(e.currentTarget);
 
         var customerId = button.attr("data-customer-id");
 
