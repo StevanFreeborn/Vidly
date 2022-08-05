@@ -1,21 +1,30 @@
 ﻿$(document).ready(() => {
+    GetCustomers().then(customers => CreateCustomersTable(customers));
+});
+
+const GetCustomers = async () => {
+    const res = await fetch(`/api/customers`);
+    return await res.json();
+}
+
+const CreateCustomersTable = (customers) => {
     var table = $("#customers-table").DataTable({
         responsive: true,
-        ajax: {
-            url: "/api/customers",
-            dataSrc: ""
-        },
+        data: customers,
         columns: [
             {
+                title: "Name",
                 data: "name",
                 render: (data, type, customer) => {
                     return `<a href="/customers/edit/${customer.id}">${customer.name}</a>`;
                 }
             },
             {
+                title: "Membership Type",
                 data: "membershipType.name"
             },
             {
+                title: "Delete",
                 data: "id",
                 render: (data) => {
                     return `<button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-modal-${data}">Delete</button>
@@ -74,4 +83,4 @@
             }
         });
     });
-});
+}

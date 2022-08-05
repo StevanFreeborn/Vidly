@@ -417,7 +417,7 @@
     <Content Include="Scripts\lib\bootstrap.esm.min.js" />
     <Content Include="Scripts\lib\bootstrap.js" />
     <Content Include="Scripts\lib\bootstrap.min.js" />
-    <Content Include="Scripts\Customers\Index.js" />
+    <Content Include="Scripts\Views\Customers\Index.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -542,7 +542,7 @@
     <Content Include="Scripts\lib\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lib\modernizr-2.8.3.js" />
-    <Content Include="Scripts\Movies\Index.js" />
+    <Content Include="Scripts\Views\Movies\Index.js" />
     <Content Include="Scripts\lib\popper-utils.js" />
     <Content Include="Scripts\lib\popper-utils.min.js" />
     <Content Include="Scripts\lib\popper.js" />
