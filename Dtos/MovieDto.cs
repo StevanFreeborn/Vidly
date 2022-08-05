@@ -1,7 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
-using System;
-using Vidly.Models;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Vidly.Dtos
 {
@@ -15,6 +13,9 @@ namespace Vidly.Dtos
 
         [Required]
         public byte GenreId { get; set; }
+
+        [Required]
+        public GenreDto Genre { get; set; }
 
         [Required]
         public DateTime ReleaseDate { get; set; }
