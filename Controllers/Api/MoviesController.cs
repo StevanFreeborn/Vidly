@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -25,6 +26,7 @@ namespace Vidly.Controllers.Api
         public IHttpActionResult GetMovies()
         {
             var movies = _context.Movies
+                .Include(m => m.Genre)
                 .ToList()
                 .Select(_mapper.Map<MovieDto>);
 
@@ -34,7 +36,9 @@ namespace Vidly.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetMoviesById(int id)
         {
-            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            var movie = _context.Movies
+                .Include(m => m.Genre)
+                .SingleOrDefault(m => m.Id == id);
 
             if (movie is null) return NotFound();
 
