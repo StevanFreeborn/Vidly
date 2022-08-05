@@ -25,26 +25,19 @@
 
         <div class="col-12">
 
-            @if (Model.Movies.Count() > 0)
-            {
-                <table class="table table-bordered table-hover">
+            <table id="movies-table" class="table table-bordered table-hover">
+
+                <thead>
                     <tr>
                         <th>Movie</th>
                         <th>Genre</th>
                     </tr>
-                    @foreach (var movie in Model.Movies)
-                    {
-                        <tr>
-                            <td>@Html.ActionLink(movie.Name, "Edit", new { id = movie.Id })</td>
-                            <td>@movie.Genre.Name</td>
-                        </tr>
-                    }
-                </table>
-            }
-            else
-            {
-                <p>We don't have any movies yet.</p>
-            }
+                </thead>
+
+                <tbody>
+                </tbody>
+
+            </table>
 
         </div>
 
@@ -52,4 +45,7 @@
 
 </div>
 
-
+@section scripts
+{
+    <script src="~/Scripts/Movies/Index.js"></script>
+}
