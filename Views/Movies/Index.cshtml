@@ -43,5 +43,12 @@
 
 @section scripts
 {
-    <script type="module" src="~/Scripts/Views/Movies/Index.js"></script>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("CanManageMovies"))
+    {
+        <script type="module" src="~/Scripts/Views/Movies/IndexEdit.js"></script>
+    }
+    else
+    {
+        <script type="module" src="~/Scripts/Views/Movies/IndexRead.js"></script>
+    }
 }

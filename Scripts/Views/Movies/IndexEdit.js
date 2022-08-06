@@ -14,7 +14,6 @@ const CreateMoviesTable = () => {
     const table = $('#movies-table').DataTable({
         responsive: true,
         ajax: moviesService.getMoviesTableData(),
-        processing: true,
         columns: [
             {
                 title: 'Name',
