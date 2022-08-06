@@ -17,38 +17,35 @@ const CreateCustomersTable = () => {
                 data: 'name',
                 render: (data, type, customer) => {
                     return `<a href="/customers/edit/${customer.id}">${customer.name}</a>`;
-                }
+                },
             },
             {
                 title: 'Membership Type',
-                data: 'membershipType.name'
+                data: 'membershipType.name',
             },
             {
                 title: 'Delete',
                 data: 'id',
-                render: RenderDeleteModal
-            }
-        ]
+                render: RenderDeleteModal,
+            },
+        ],
     });
 
     $('#customers-table').on('click', '.btn-delete', (e) => {
-
         const button = $(e.currentTarget);
 
         const customerId = button.attr('data-customer-id');
 
-        customersService.deleteCustomer(customerId)
-            .then(res => {
+        customersService
+            .deleteCustomer(customerId)
+            .then((res) => {
                 if (!res.ok) return alert(deleteCustomerErrorMessage);
 
-                table
-                    .row(button.parents('tr'))
-                    .remove()
-                    .draw();
+                table.row(button.parents('tr')).remove().draw();
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
                 alert(deleteCustomerErrorMessage);
             });
     });
-}
+};

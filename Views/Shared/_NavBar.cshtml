@@ -20,9 +20,10 @@
                     @Html.ActionLink("Customers", "Index", "Customers", routeValues: null, htmlAttributes: new { @class = "nav-link" })
                 </li>
 
+                @Html.Partial("_LoginPartial")
+
             </ul>
 
-            @Html.Partial("_LoginPartial")
         </div>
 
     </div>

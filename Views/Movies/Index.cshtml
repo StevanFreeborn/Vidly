@@ -15,7 +15,10 @@
 
         <div class="col-6 text-end">
 
-            @Html.ActionLink("Add Movie", "Add", null, new { @class = "btn btn-sm btn-primary" })
+            @if (User.Identity.IsAuthenticated && User.IsInRole("CanManageMovies"))
+            {
+                @Html.ActionLink("Add Movie", "Add", null, new { @class = "btn btn-sm btn-primary" })
+            }
 
         </div>
 

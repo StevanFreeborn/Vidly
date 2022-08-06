@@ -34,6 +34,7 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = "CanManageMovies")]
         public ActionResult Add()
         {
             var viewModel = new MovieFormViewModel
@@ -44,6 +45,7 @@ namespace Vidly.Controllers
             return View("MovieForm", viewModel);
         }
 
+        [Authorize(Roles = "CanManageMovies")]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies
@@ -61,6 +63,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "CanManageMovies")]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {

@@ -2,13 +2,10 @@
 const moviesService = new MoviesService();
 
 $(document).ready(() => {
-
-    CreateMoviesTable()
-
+    CreateMoviesTable();
 });
 
 const CreateMoviesTable = () => {
-
     $('#movies-table').DataTable({
         responsive: true,
         ajax: moviesService.getMoviesTableData(),
@@ -19,8 +16,8 @@ const CreateMoviesTable = () => {
             },
             {
                 title: 'Genre',
-                data: 'genre.name'
-            }
-        ]
+                data: 'genre.name',
+            },
+        ],
     });
-}
+};
