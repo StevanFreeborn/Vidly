@@ -438,7 +438,6 @@
     <Content Include="Scripts\lib\bootstrap.esm.min.js" />
     <Content Include="Scripts\lib\bootstrap.js" />
     <Content Include="Scripts\lib\bootstrap.min.js" />
-    <Content Include="Scripts\Logger.js" />
     <Content Include="Scripts\Services\CustomersService.js" />
     <Content Include="Scripts\Services\MoviesService.js" />
     <Content Include="Scripts\Views\Customers\Index.js" />
