@@ -430,6 +430,7 @@
     <Content Include="ConnectionStrings.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Constants\ErrorMessages.js" />
     <Content Include="Scripts\DataTables\responsive.bootstrap5.js" />
     <Content Include="Scripts\lib\bootstrap.bundle.js" />
     <Content Include="Scripts\lib\bootstrap.bundle.min.js" />
@@ -437,6 +438,9 @@
     <Content Include="Scripts\lib\bootstrap.esm.min.js" />
     <Content Include="Scripts\lib\bootstrap.js" />
     <Content Include="Scripts\lib\bootstrap.min.js" />
+    <Content Include="Scripts\Logger.js" />
+    <Content Include="Scripts\Services\CustomersService.js" />
+    <Content Include="Scripts\Services\MoviesService.js" />
     <Content Include="Scripts\Views\Customers\Index.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -634,6 +638,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\Views\Shared\DeleteModal.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
