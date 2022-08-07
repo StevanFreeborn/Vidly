@@ -788,17 +788,17 @@ function _excelColWidth( data, col ) {
 }
 
   var _serialiser = "";
-    if (typeof window.XMLSerializer === 'undefined') {
-        _serialiser = new function () {
-            this.serializeToString = function (input) {
-                return input.xml
-            }
-        };
-    } else {
-        _serialiser =  new XMLSerializer();
-    }
+	if (typeof window.XMLSerializer === 'undefined') {
+		_serialiser = new function () {
+			this.serializeToString = function (input) {
+				return input.xml
+			}
+		};
+	} else {
+		_serialiser =  new XMLSerializer();
+	}
 
-    var _ieExcel;
+	var _ieExcel;
 
 
 /**
@@ -1259,9 +1259,6 @@ DataTable.ext.buttons.excelFlash = $.extend( {}, flashButton, {
 				for ( var j=0, jen=_excelSpecials.length ; j<jen ; j++ ) {
 					var special = _excelSpecials[j];
 
-					// TODO Need to provide the ability for the specials to say
-					// if they are returning a string, since at the moment it is
-					// assumed to be a number
 					if ( row[i].match && ! row[i].match(/^0\d+/) && row[i].match( special.match ) ) {
 						var val = row[i].replace(/[^\d\.\-]/g, '');
 
