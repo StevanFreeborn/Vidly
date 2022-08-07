@@ -320,7 +320,14 @@ namespace Vidly.Controllers
 
             if (info is null) return View("ExternalLoginFailure");
 
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser 
+            { 
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.Email, 
+                Email = model.Email
+            };
+
             var result = await UserManager.CreateAsync(user);
 
             if (result.Succeeded is false)
@@ -429,7 +436,7 @@ namespace Vidly.Controllers
             {
                 var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
 
-                if (UserId is null) properties.Dictionary[XsrfKey] = UserId;
+                if (UserId != null) properties.Dictionary[XsrfKey] = UserId;
                 
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
