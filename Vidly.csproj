@@ -214,6 +214,10 @@
     <Compile Include="Migrations\202208052306559_SeedUsers.designer.cs">
       <DependentUpon>202208052306559_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208071724285_AddFirstAndLastNameToApplicationUser.cs" />
+    <Compile Include="Migrations\202208071724285_AddFirstAndLastNameToApplicationUser.designer.cs">
+      <DependentUpon>202208071724285_AddFirstAndLastNameToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\RoleName.cs" />
@@ -713,6 +717,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208052306559_SeedUsers.resx">
       <DependentUpon>202208052306559_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208071724285_AddFirstAndLastNameToApplicationUser.resx">
+      <DependentUpon>202208071724285_AddFirstAndLastNameToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

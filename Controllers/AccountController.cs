@@ -108,7 +108,7 @@ namespace Vidly.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid code.");
+                    ModelState.AddModelError("Error", "Invalid code.");
                     return View(model);
             }
         }
@@ -126,7 +126,14 @@ namespace Vidly.Controllers
         {
             if (ModelState.IsValid is false) return View(model);
 
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser 
+            { 
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.Email, 
+                Email = model.Email
+            };
+            
             var result = await UserManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded is false)
@@ -388,7 +395,7 @@ namespace Vidly.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError("Error", error);
             }
         }
 
