@@ -1,4 +1,5 @@
-﻿@model Vidly.ViewModels.MoviesViewModel
+﻿@using Vidly.Models
+@model Vidly.ViewModels.MoviesViewModel
 
 @{
     ViewBag.Title = "Movies";
@@ -15,7 +16,7 @@
 
         <div class="col-6 text-end">
 
-            @if (User.Identity.IsAuthenticated && User.IsInRole("CanManageMovies"))
+            @if (User.Identity.IsAuthenticated && User.IsInRole(RoleName.CanManageMovies))
             {
                 @Html.ActionLink("Add Movie", "Add", null, new { @class = "btn btn-sm btn-primary" })
             }
@@ -46,7 +47,7 @@
 
 @section scripts
 {
-    @if (User.Identity.IsAuthenticated && User.IsInRole("CanManageMovies"))
+    @if (User.Identity.IsAuthenticated && User.IsInRole(RoleName.CanManageMovies))
     {
         <script type="module" src="~/Scripts/Views/Movies/IndexEdit.js"></script>
     }
