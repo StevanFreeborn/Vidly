@@ -2,6 +2,6 @@
 {
     public static class RoleName
     {
-        public const string CanManageMovies = "CanManageMoives";
+        public const string CanManageMovies = "CanManageMovies";
     }
 }

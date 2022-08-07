@@ -34,7 +34,7 @@ const CreateCustomersTable = () => {
     $('#customers-table').on('click', '.btn-delete', (e) => {
         const button = $(e.currentTarget);
 
-        const customerId = button.attr('data-customer-id');
+        const customerId = button.attr('data-id');
 
         customersService
             .deleteCustomer(customerId)
