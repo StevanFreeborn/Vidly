@@ -153,7 +153,9 @@ namespace Vidly.Controllers
 
             var result = await UserManager.ConfirmEmailAsync(userId, code);
 
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            var view = result.Succeeded ? "ConfirmEmail" : "Error";
+
+            return View(view);
         }
 
         [AllowAnonymous]
@@ -178,8 +180,11 @@ namespace Vidly.Controllers
             // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
             // Send an email with this link
             string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+
             var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
             await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
             return RedirectToAction("ForgotPasswordConfirmation", "Account");
         }
 
@@ -192,7 +197,7 @@ namespace Vidly.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
-            return code == null ? View("Error") : View();
+            return code is null ? View("Error") : View();
         }
 
         [HttpPost]
