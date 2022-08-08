@@ -24,6 +24,7 @@ namespace Vidly
                 "~/Content/Bootstrap/bootstrap-lumen.css",
                 "~/Content/DataTables/css/dataTables.bootstrap5.css",
                 "~/Content/DataTables/css/responsive.bootstrap5.css",
+                "~/Content/font-awesome/css/all.css",
                 "~/Content/site.css"));
         }
     }

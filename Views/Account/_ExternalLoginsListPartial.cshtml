@@ -14,14 +14,29 @@
 
             @foreach (AuthenticationDescription description in loginProviders)
             {
+                var type = description.AuthenticationType;
+
                 <button type="submit"
                         class="btn btn-primary m-1"
-                        id="@description.AuthenticationType"
+                        id="@type"
                         name="provider"
-                        value="@description.AuthenticationType"
+                        value="@type"
                         title="Log in using your @description.Caption account">
 
-                    @description.AuthenticationType
+                    @if (type.ToLower() == "google")
+                    {
+                        <i class="fa-brands fa-google mx-1"></i> @type
+                    }
+
+                    @if (type.ToLower() == "facebook")
+                    {
+                        <i class="fa-brands fa-facebook mx-1"></i> @type
+                    }
+
+                    @if (type.ToLower() == "twitter")
+                    {
+                        <i class="fa-brands fa-twitter mx-1"></i> @type
+                    }
 
                 </button>
             }
