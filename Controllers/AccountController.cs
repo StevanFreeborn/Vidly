@@ -320,6 +320,10 @@ namespace Vidly.Controllers
 
             if (info is null) return View("ExternalLoginFailure");
 
+            // TODO: Address if existing user is attempting to login
+            // to a different 3rd party provider for the first time
+            // from the login page.
+
             var user = new ApplicationUser 
             { 
                 FirstName = model.FirstName,

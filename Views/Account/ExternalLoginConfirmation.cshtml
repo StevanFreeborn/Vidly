@@ -17,9 +17,11 @@
 
                 <hr />
 
-                <p class="text-primary">
+                <p class="text-daark">
                     You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>. Please enter your name and email (which will be used as your username) for this site below and click the Register button to finish logging in.
                 </p>
+
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
                 <div class="mb-3">
                     @Html.LabelFor(m => m.FirstName, new { @class = "form-label" })
