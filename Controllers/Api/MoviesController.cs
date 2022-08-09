@@ -12,8 +12,8 @@ namespace Vidly.Controllers.Api
 {
     public class MoviesController : ApiController
     {
-        private ApplicationDbContext _context;
-        private IMapper _mapper;
+        private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
         public MoviesController()
         {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Glimpse.Core.Configuration;
 
 namespace Vidly.Dtos
 {
@@ -13,3 +14,4 @@ namespace Vidly.Dtos
         public List<int> MovieIds { get; set; }
     }
 }
+

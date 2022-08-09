@@ -10,11 +10,11 @@ namespace Vidly.Controllers.Api
 {
     public class RentalsController : ApiController
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public RentalsController(ApplicationDbContext context)
+        public RentalsController()
         {
-            _context = context;
+            _context = new ApplicationDbContext();
         }
 
         [HttpPost]

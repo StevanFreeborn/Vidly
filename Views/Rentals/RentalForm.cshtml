@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Add Rental";
+}
+
+<div class="container-sm">
+
+    <div class="row">
+
+        <div class="col-12">
+
+            <h2>Add Rental</h2>
+
+            <form>
+
+                <div class="mb-3">
+                    <label class="form-label">Customer</label>
+
+                    <div class="tt-container">
+                        <input id="customer" type="text" value="" class="form-control" />
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Movie</label>
+
+                    <div class="tt-container">
+                        <input id="movie" type="text" value="" class="form-control" />
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <h6>Movies Rented:</h6>
+
+                    <ul id="selectedMovies" class="list-group">
+
+                        <li id="moviesPlaceholder" class="list-group-item">No movies selected.</li>
+
+                    </ul>
+
+                </div>
+
+                <button class="btn btn-primary">Add</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/Views/Rentals/RentalForm.js"></script>
+}
