@@ -1,4 +1,9 @@
-﻿$(document).ready(function () {
+﻿import MoviesService from '../../Services/MoviesService.js';
+import CustomersService from '../../Services/CustomersService.js';
+const movieService = new MoviesService();
+const customerService = new CustomersService();
+
+$(document).ready(function () {
     let viewModel = {
         customerId: null,
         movieIds: [],
@@ -8,9 +13,8 @@
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
-            url: '/api/customers?query=%QUERY',
+            url: `${customerService.endpoint}?query=%QUERY`,
             wildcard: '%QUERY',
-            cache: false,
         }
     });
 
@@ -18,14 +22,13 @@
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
-            url: '/api/movies?query=%QUERY',
+            url: `${movieService.endpoint}?query=%QUERY`,
             wildcard: '%QUERY',
-            cache: false,
         }
     });
 
     $('#customer').typeahead({
-        minLength: 3,
+        minLength: 1,
         highlight: true
     }, {
         name: 'customers',
@@ -36,7 +39,7 @@
     });
 
     $('#movie').typeahead({
-        minLength: 3,
+        minLength: 1,
         highlight: true,
     }, {
         name: 'movie',

@@ -521,6 +521,7 @@
     <Content Include="ConnectionStrings.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Constants\ApiEndpoints.js" />
     <Content Include="Scripts\lib\bloodhound.js" />
     <Content Include="Scripts\lib\bloodhound.min.js" />
     <Content Include="Scripts\Constants\ErrorMessages.js" />
