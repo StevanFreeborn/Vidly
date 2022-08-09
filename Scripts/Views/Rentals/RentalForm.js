@@ -9,7 +9,8 @@
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
             url: '/api/customers?query=%QUERY',
-            wildcard: '%QUERY'
+            wildcard: '%QUERY',
+            cache: false,
         }
     });
 
@@ -29,18 +30,22 @@
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
             url: '/api/movies?query=%QUERY',
-            wildcard: '%QUERY'
+            wildcard: '%QUERY',
+            cache: false,
         }
     });
 
     $('#movie').typeahead({
         minLength: 3,
-        highlight: true
+        highlight: true,
     }, {
         name: 'movie',
         display: 'name',
-        source: movies
+        source: movies,
     }).on('typeahead:select', (e, movie) => {
+
+        if (viewModel.movieIds.indexOf(movie.id) !== -1) return;
+
         $('#moviesPlaceholder').remove();
         $("#selectedMovies").append(`<li class="list-group-item">${movie.name}</li>`);
         $('#movie').typeahead('val', '');
