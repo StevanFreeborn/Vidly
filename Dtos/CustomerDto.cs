@@ -19,7 +19,6 @@ namespace Vidly.Dtos
         [Required]
         public byte MembershipTypeId { get; set; }
 
-        [Required]
         public MembershipTypeDto MembershipType { get; set; }
 
         // commented out to avoid exception being thrown when trying to add
