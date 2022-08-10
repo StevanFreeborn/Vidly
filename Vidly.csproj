@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\Microsoft.TypeScript.MSBuild.4.7.4\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('packages\Microsoft.TypeScript.MSBuild.4.7.4\build\Microsoft.TypeScript.MSBuild.props')" />
-  <Import Project="packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\build\MSBuild.Microsoft.VisualStudio.Web.targets.props" Condition="Exists('packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\build\MSBuild.Microsoft.VisualStudio.Web.targets.props')" />
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -219,6 +218,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
+    <Compile Include="Controllers\RentalsController.cs" />
+    <Compile Include="Dtos\RentalDto.cs" />
+    <Compile Include="Controllers\Api\RentalsController.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
@@ -256,8 +258,17 @@
     <Compile Include="Migrations\202208071724285_AddFirstAndLastNameToApplicationUser.designer.cs">
       <DependentUpon>202208071724285_AddFirstAndLastNameToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208090220019_AddRentalEntity.cs" />
+    <Compile Include="Migrations\202208090220019_AddRentalEntity.designer.cs">
+      <DependentUpon>202208090220019_AddRentalEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202208090317445_AddNumberAvailableToMoviesClass.cs" />
+    <Compile Include="Migrations\202208090317445_AddNumberAvailableToMoviesClass.designer.cs">
+      <DependentUpon>202208090317445_AddNumberAvailableToMoviesClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="ViewModels\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
@@ -502,12 +513,18 @@
     <Content Include="Content\font-awesome\sprites\brands.svg" />
     <Content Include="Content\font-awesome\sprites\regular.svg" />
     <Content Include="Content\font-awesome\sprites\solid.svg" />
+    <Content Include="Content\Toastr\toastr.css" />
+    <Content Include="Content\Toastr\toastr.min.css" />
+    <Content Include="Content\Typeahead\Typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ConnectionStrings.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Constants\ApiEndpoints.js" />
+    <Content Include="Scripts\lib\bloodhound.js" />
+    <Content Include="Scripts\lib\bloodhound.min.js" />
     <Content Include="Scripts\Constants\ErrorMessages.js" />
     <Content Include="Scripts\DataTables\responsive.bootstrap5.js" />
     <Content Include="Scripts\lib\bootstrap.bundle.js" />
@@ -518,6 +535,13 @@
     <Content Include="Scripts\lib\bootstrap.min.js" />
     <Content Include="Scripts\Services\CustomersService.js" />
     <Content Include="Scripts\Services\MoviesService.js" />
+    <Content Include="Scripts\lib\typeahead.bundle.js" />
+    <Content Include="Scripts\lib\typeahead.bundle.min.js" />
+    <Content Include="Scripts\lib\typeahead.jquery.js" />
+    <Content Include="Scripts\lib\typeahead.jquery.min.js" />
+    <Content Include="Scripts\Services\RentalsService.js" />
+    <Content Include="Scripts\lib\toastr.js" />
+    <Content Include="Scripts\lib\toastr.min.js" />
     <Content Include="Scripts\Views\Customers\Index.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -644,6 +668,10 @@
     <Content Include="Content\font-awesome\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\font-awesome\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Content\font-awesome\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="Controllers\Api\Requests\RentalsTestRequests.http" />
+    <Content Include="Content\Toastr\toastr.scss" />
+    <Content Include="Content\Toastr\toastr.less" />
+    <None Include="Properties\PublishProfiles\Vidly - Web Deploy.pubxml" />
     <None Include="Scripts\lib\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\lib\jquery-3.6.0.js" />
     <Content Include="Scripts\lib\jquery-3.6.0.min.js" />
@@ -728,6 +756,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\Views\Rentals\RentalForm.js" />
     <Content Include="Scripts\Views\Shared\DeleteModal.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -778,9 +807,12 @@
     <Content Include="Scripts\lib\popper-utils.min.js.map" />
     <Content Include="Scripts\lib\popper-utils.js.map" />
     <Content Include="Views\Movies\MovieForm.cshtml" />
+    <Content Include="Views\Rentals\RentalForm.cshtml" />
+    <Content Include="Views\Rentals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -805,6 +837,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208071724285_AddFirstAndLastNameToApplicationUser.resx">
       <DependentUpon>202208071724285_AddFirstAndLastNameToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208090220019_AddRentalEntity.resx">
+      <DependentUpon>202208090220019_AddRentalEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208090317445_AddNumberAvailableToMoviesClass.resx">
+      <DependentUpon>202208090317445_AddNumberAvailableToMoviesClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -848,7 +886,6 @@
     <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
-    <Error Condition="!Exists('packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\build\MSBuild.Microsoft.VisualStudio.Web.targets.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\build\MSBuild.Microsoft.VisualStudio.Web.targets.props'))" />
     <Error Condition="!Exists('packages\Microsoft.TypeScript.MSBuild.4.7.4\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.TypeScript.MSBuild.4.7.4\build\Microsoft.TypeScript.MSBuild.props'))" />
     <Error Condition="!Exists('packages\Microsoft.TypeScript.MSBuild.4.7.4\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.TypeScript.MSBuild.4.7.4\build\Microsoft.TypeScript.MSBuild.targets'))" />
   </Target>
