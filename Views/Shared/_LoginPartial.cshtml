@@ -1,17 +1,31 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-    {
-        @Html.AntiForgeryToken()
+    <li class="nav-item dropdown">
 
-        <li class="nav-item">
-            <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-        </li>
-    }
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            @User.Identity.GetUserName()
+        </a>
 
-    <li class="nav-item">
-        @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            
+            <li>
+                @Html.ActionLink("Manage Account", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "dropdown-item" })
+            </li>
+
+            <li><hr class="dropdown-divider"></li>
+            
+            <li>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+
+                    @Html.AntiForgeryToken()
+                }
+            </li>
+
+        </ul>
+
     </li>
 }
 else
@@ -21,6 +35,6 @@ else
     </li>
 
     <li class="nav-item">
-        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })
+        @Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })
     </li>
 }
