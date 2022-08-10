@@ -1,6 +1,6 @@
 # Vidly
 
-A software management tool for small, private-owned, video rental businesses built originaly as part of [The Complete ASP.NET MVC 5 Course](https://codewithmosh.com/p/asp-net-mvc) by Mosh Hamedani, but expanded with additional functionality.
+A software management tool for small, private-owned, video rental businesses built originaly as part of [The Complete ASP.NET MVC 5 Course](https://codewithmosh.com/p/asp-net-mvc) by [Mosh Hamedani](https://twitter.com/moshhamedani), but expanded with additional functionality.
 
 The app is built using:
 
