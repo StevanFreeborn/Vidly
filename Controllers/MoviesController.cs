@@ -8,7 +8,7 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public MoviesController()
         {
@@ -70,6 +70,7 @@ namespace Vidly.Controllers
 
             if (movie.Id == 0)
             {
+                movie.NumberAvailable = movie.NumberInStock;
                 _context.Movies.Add(movie);
             }
             else
