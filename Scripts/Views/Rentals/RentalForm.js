@@ -30,6 +30,7 @@ $(document).ready(function () {
     });
 
     $('#customer').typeahead({
+        hint: false,
         minLength: 1,
         highlight: true
     }, {
@@ -41,6 +42,7 @@ $(document).ready(function () {
     });
 
     $('#movie').typeahead({
+        hint: false,
         minLength: 1,
         highlight: true,
     }, {
@@ -89,11 +91,15 @@ $(document).ready(function () {
         if (movieIds.length === 0) $('#selectedMovies').append('<li id="moviesPlaceholder" class="list-group-item">No movies selected.</li>');
     });
 
-    $.validator.addMethod('validCustomer', () => {
-        return viewModel.customerId && vm.customerId !== 0;
+    $.validator.addMethod('valid-customer', () => {
+        return viewModel.customerId && viewModel.customerId !== 0;
     }, 'Please select a valid customer.');
 
-    $("#newRental").validate({
+    $.validator.addMethod('one-movie', () => {
+        return viewModel.movieIds.length > 0;
+    }, 'Please select at least one movie.');
+
+    var validator = $("#newRental").validate({
         submitHandler: (form, e) => {
             e.preventDefault();
 
@@ -101,6 +107,19 @@ $(document).ready(function () {
                 .then((res) => {
                     if (!res.ok) return toastr.error('Could not create rentals. Please try again.');
                     toastr.success('Rentals successfully recorded.');
+
+                    $('#customer').typeahead('val', '');
+                    $('#movie').typeahead('val', '');
+                    $('#selectedMovies')
+                        .empty()
+                        .append('<li id="moviesPlaceholder" class="list-group-item">No movies selected.</li>');
+
+                    viewModel = {
+                        customerId: null,
+                        movieIds: [],
+                    }
+
+                    validator.resetForm();
                 })
                 .catch((err) => {
                     console.log(err);
@@ -108,4 +127,6 @@ $(document).ready(function () {
                 });
         }
     });
+
+
 })
