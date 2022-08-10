@@ -514,6 +514,8 @@
     <Content Include="Content\font-awesome\sprites\brands.svg" />
     <Content Include="Content\font-awesome\sprites\regular.svg" />
     <Content Include="Content\font-awesome\sprites\solid.svg" />
+    <Content Include="Content\Toastr\toastr.css" />
+    <Content Include="Content\Toastr\toastr.min.css" />
     <Content Include="Content\Typeahead\Typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -538,6 +540,9 @@
     <Content Include="Scripts\lib\typeahead.bundle.min.js" />
     <Content Include="Scripts\lib\typeahead.jquery.js" />
     <Content Include="Scripts\lib\typeahead.jquery.min.js" />
+    <Content Include="Scripts\Services\RentalsService.js" />
+    <Content Include="Scripts\lib\toastr.js" />
+    <Content Include="Scripts\lib\toastr.min.js" />
     <Content Include="Scripts\Views\Customers\Index.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -665,6 +670,8 @@
     <Content Include="Content\font-awesome\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Content\font-awesome\webfonts\fa-v4compatibility.woff2" />
     <Content Include="Controllers\Api\Requests\RentalsTestRequests.http" />
+    <Content Include="Content\Toastr\toastr.scss" />
+    <Content Include="Content\Toastr\toastr.less" />
     <None Include="Scripts\lib\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\lib\jquery-3.6.0.js" />
     <Content Include="Scripts\lib\jquery-3.6.0.min.js" />

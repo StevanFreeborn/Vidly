@@ -1,7 +1,9 @@
 ﻿import MoviesService from '../../Services/MoviesService.js';
 import CustomersService from '../../Services/CustomersService.js';
+import RentalsService from '../../Services/RentalsService.js';
 const movieService = new MoviesService();
 const customerService = new CustomersService();
+const rentalsService = new RentalsService();
 
 $(document).ready(function () {
     let viewModel = {
@@ -85,5 +87,25 @@ $(document).ready(function () {
         button.parents('li').remove();
 
         if (movieIds.length === 0) $('#selectedMovies').append('<li id="moviesPlaceholder" class="list-group-item">No movies selected.</li>');
+    });
+
+    $.validator.addMethod('validCustomer', () => {
+        return viewModel.customerId && vm.customerId !== 0;
+    }, 'Please select a valid customer.');
+
+    $("#newRental").validate({
+        submitHandler: (form, e) => {
+            e.preventDefault();
+
+            rentalsService.createRental(viewModel)
+                .then((res) => {
+                    if (!res.ok) return toastr.error('Could not create rentals. Please try again.');
+                    toastr.success('Rentals successfully recorded.');
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toastr.error('Could not create rentals. Please try again.');
+                });
+        }
     });
 })
