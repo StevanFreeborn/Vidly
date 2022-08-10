@@ -12,8 +12,8 @@ namespace Vidly.Controllers.Api
 {
     public class MoviesController : ApiController
     {
-        private ApplicationDbContext _context;
-        private IMapper _mapper;
+        private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
         public MoviesController()
         {
@@ -23,14 +23,23 @@ namespace Vidly.Controllers.Api
         }
 
         [HttpGet]
-        public IHttpActionResult GetMovies()
+        public IHttpActionResult GetMovies(string query = null)
         {
-            var movies = _context.Movies
+            var moviesQuery = _context.Movies
                 .Include(m => m.Genre)
+                .Where(m => m.NumberAvailable > 0);
+
+            if (string.IsNullOrEmpty(query) is false)
+            {
+                moviesQuery = _context.Movies
+                    .Where(m => m.Name.ToLower().Contains(query.ToLower()));
+            }
+
+            var movieDtos = moviesQuery
                 .ToList()
                 .Select(_mapper.Map<MovieDto>);
 
-            return Ok(movies);
+            return Ok(movieDtos);
         }
 
         [HttpGet]
@@ -56,10 +65,16 @@ namespace Vidly.Controllers.Api
 
             var movie = _mapper.Map<Movie>(movieDto);
 
+            movie.NumberAvailable = movie.NumberInStock;
+
             _context.Movies.Add(movie);
             _context.SaveChanges();
 
             movieDto.Id = movie.Id;
+
+            var genre = _context.Genres.SingleOrDefault(g => g.Id == movieDto.GenreId);
+
+            movieDto.Genre = _mapper.Map<GenreDto>(genre);
 
             var resourceUri = new Uri($"{Request.RequestUri}/{movie.Id}");
 

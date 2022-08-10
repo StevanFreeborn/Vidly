@@ -1,17 +1,19 @@
 ﻿import { getMoviesErrorMessage } from '../Constants/ErrorMessages.js';
+import * as endpoints from '../Constants/ApiEndpoints.js';
 
 export default class MoviesService {
-    endpoint = '/api/movies';
+    endpoint = endpoints.MOVIES_ENDPOINT;
 
     getMoviesTableData = () => {
         return {
-            url: `${this.endpoint}`,
+            url: this.endpoint,
             dataSrc: '',
             error: () => { alert(getMoviesErrorMessage) }
         };
     }
 
     deleteMovie = async (id) => {
-        return await fetch(`${this.endpoint}/${id}`, { method: 'DELETE' });
+        const url = endpoints.GetDeleteMovieUrl(id);
+        return await fetch(url, { method: 'DELETE' });
     }
 }

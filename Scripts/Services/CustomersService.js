@@ -1,17 +1,19 @@
 ﻿import { getCustomersErrorMessage } from '../Constants/ErrorMessages.js';
+import * as endpoints from '../Constants/ApiEndpoints.js';
 
 export default class CustomersService {
-    endpoint = '/api/customers';
+    endpoint = endpoints.CUSTOMERS_ENDPOINT;
 
     getCustomersTableData = () => {
         return {
-            url: `${this.endpoint}`,
+            url: this.endpoint,
             dataSrc: '',
             error: () => { alert(getCustomersErrorMessage) }
         };
     }
 
     deleteCustomer = async (id) => {
-        return await fetch(`${this.endpoint}/${id}`, { method: 'DELETE' });
+        const url = endpoints.GetDeleteCustomerUrl(id);
+        return await fetch(url, { method: 'DELETE' });
     }
 }

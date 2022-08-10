@@ -28,5 +28,20 @@ namespace Vidly.Models
         [Range(0, int.MaxValue, ErrorMessage = "Number in stock cannot be negative.")]
         [Display(Name = "Number in Stock")]
         public int NumberInStock { get; set; }
+
+        [Required]
+        public int NumberAvailable { get; set; }
+
+        public void CheckOut()
+        {
+            if (NumberAvailable == 0) return;
+            NumberAvailable--;
+        }
+
+        public bool IsAvailable()
+        {
+            if (NumberAvailable > 0) return true;
+            return false;
+        }
     }
 }
