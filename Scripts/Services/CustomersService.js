@@ -8,7 +8,7 @@ export default class CustomersService {
         return {
             url: this.endpoint,
             dataSrc: '',
-            error: () => { alert(getCustomersErrorMessage) }
+            error: () => { toastr.error(getCustomersErrorMessage) }
         };
     }
 

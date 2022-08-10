@@ -8,7 +8,7 @@ export default class MoviesService {
         return {
             url: this.endpoint,
             dataSrc: '',
-            error: () => { alert(getMoviesErrorMessage) }
+            error: () => { toastr.error(getMoviesErrorMessage) }
         };
     }
 

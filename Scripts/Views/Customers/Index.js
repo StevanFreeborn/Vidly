@@ -39,13 +39,13 @@ const CreateCustomersTable = () => {
         customersService
             .deleteCustomer(customerId)
             .then((res) => {
-                if (!res.ok) return alert(deleteCustomerErrorMessage);
+                if (!res.ok) return toastr.error(deleteCustomerErrorMessage);
 
                 table.row(button.parents('tr')).remove().draw();
             })
             .catch((err) => {
                 console.log(err);
-                alert(deleteCustomerErrorMessage);
+                toastr.error(deleteCustomerErrorMessage);
             });
     });
 };

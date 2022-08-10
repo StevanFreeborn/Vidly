@@ -39,13 +39,13 @@ const CreateMoviesTable = () => {
         moviesService
             .deleteMovie(movieId)
             .then((res) => {
-                if (!res.ok) return alert(deleteMovieErrorMessage);
+                if (!res.ok) return toastr.error(deleteMovieErrorMessage);
 
                 table.row(button.parents('tr')).remove().draw();
             })
             .catch((err) => {
                 console.log(err);
-                alert(deleteMovieErrorMessage);
+                toastr.error(deleteMovieErrorMessage);
             });
     });
 };
