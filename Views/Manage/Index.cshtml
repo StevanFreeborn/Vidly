@@ -92,12 +92,11 @@
 
                     using (Html.BeginForm("RemovePhoneNumber", "Manage"))
                     {
+                        @Html.AntiForgeryToken()
 
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Remove</button>
                         </div>
-
-                        @Html.AntiForgeryToken()
                     }
                 }
                 else

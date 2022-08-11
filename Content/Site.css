@@ -11,3 +11,8 @@ input.error {
 .btn {
     text-transform: none;
 }
+
+.validation-summary-errors ul {
+    padding-left: 0;
+    list-style: none;
+}

@@ -10,6 +10,8 @@
 
     using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
     {
+        @Html.AntiForgeryToken()
+
         <div id="socialLoginList" class="d-flex flex-column">
 
             @foreach (AuthenticationDescription description in loginProviders)
@@ -42,8 +44,6 @@
             }
 
         </div>
-
-        @Html.AntiForgeryToken()
     }
 
 }
