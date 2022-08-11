@@ -13,7 +13,7 @@ export default class CustomersService {
     }
 
     deleteCustomer = async (id) => {
-        const url = endpoints.GetDeleteCustomerUrl(id);
+        const url = endpoints.getDeleteCustomerUrl(id);
         return await fetch(url, { method: 'DELETE' });
     }
 }

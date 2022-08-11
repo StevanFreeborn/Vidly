@@ -1,5 +1,6 @@
 ﻿import RenderDeleteModal from '../Shared/DeleteModal.js';
 import { deleteMovieErrorMessage } from '../../Constants/ErrorMessages.js';
+import { deleteMovieSuccessMessage } from '../../Constants/SuccessMessages.js';
 import MoviesService from '../../Services/MoviesService.js';
 const moviesService = new MoviesService();
 
@@ -24,6 +25,14 @@ const CreateMoviesTable = () => {
                 data: 'genre.name',
             },
             {
+                title: 'Number In Stock',
+                data: 'numberInStock',
+            },
+            {
+                title: 'Number Available',
+                data: 'numberAvailable'
+            },
+            {
                 title: 'Delete',
                 data: 'id',
                 render: RenderDeleteModal,
@@ -39,13 +48,15 @@ const CreateMoviesTable = () => {
         moviesService
             .deleteMovie(movieId)
             .then((res) => {
-                if (!res.ok) return toastr.error(deleteMovieErrorMessage);
+                if (!res.ok) return toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
 
-                table.row(button.parents('tr')).remove().draw();
+                toastr.success(deleteMovieSuccessMessage, null, { closeButton: true })
+
+                table.row(button.parents('tr')).remove().draw(false);
             })
             .catch((err) => {
                 console.log(err);
-                toastr.error(deleteMovieErrorMessage);
+                toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
             });
     });
 };

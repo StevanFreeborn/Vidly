@@ -2,10 +2,14 @@
 export const MOVIES_ENDPOINT = '/api/movies';
 export const RENTALS_ENDPOINT = '/api/rentals';
 
-export const GetDeleteMovieUrl = (id) => {
+export const getDeleteMovieUrl = (id) => {
     return `${MOVIES_ENDPOINT}/${id}`
 }
 
-export const GetDeleteCustomerUrl = (id) => {
+export const getDeleteCustomerUrl = (id) => {
     return `${CUSTOMERS_ENDPOINT}/${id}`
+}
+
+export const getDeleteRentalUrl = (id) => {
+    return `${RENTALS_ENDPOINT}/${id}`
 }

@@ -18,6 +18,14 @@ const CreateMoviesTable = () => {
                 title: 'Genre',
                 data: 'genre.name',
             },
+            {
+                title: 'Number In Stock',
+                data: 'numberInStock',
+            },
+            {
+                title: 'Number Available',
+                data: 'numberAvailable'
+            },
         ],
     });
 };

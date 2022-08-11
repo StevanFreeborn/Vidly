@@ -1,5 +1,6 @@
 ﻿import RenderDeleteModal from '../Shared/DeleteModal.js';
 import { deleteCustomerErrorMessage } from '../../Constants/ErrorMessages.js';
+import { deleteCustomerSuccessMessage } from '../../Constants/SuccessMessages.js';
 import CustomersService from '../../Services/CustomersService.js';
 const customersService = new CustomersService();
 
@@ -39,13 +40,15 @@ const CreateCustomersTable = () => {
         customersService
             .deleteCustomer(customerId)
             .then((res) => {
-                if (!res.ok) return toastr.error(deleteCustomerErrorMessage);
+                if (!res.ok) return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
 
-                table.row(button.parents('tr')).remove().draw();
+                toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
+
+                table.row(button.parents('tr')).remove().draw(false);
             })
             .catch((err) => {
                 console.log(err);
-                toastr.error(deleteCustomerErrorMessage);
+                toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
             });
     });
 };

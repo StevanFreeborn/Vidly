@@ -25,5 +25,7 @@ namespace Vidly.Dtos
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Number in stock cannot be negative.")]
         public int NumberInStock { get; set; }
+
+        public int NumberAvailable { get; set; }
     }
 }

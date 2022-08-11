@@ -226,6 +226,7 @@
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\RentalsController.cs" />
     <Compile Include="Dtos\RentalDto.cs" />
+    <Compile Include="Dtos\RentalsDto.cs" />
     <Compile Include="Controllers\Api\RentalsController.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
@@ -529,6 +530,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\Constants\ApiEndpoints.js" />
+    <Content Include="Scripts\Constants\SuccessMessages.js" />
     <Content Include="Scripts\lib\bloodhound.js" />
     <Content Include="Scripts\lib\bloodhound.min.js" />
     <Content Include="Scripts\Constants\ErrorMessages.js" />
@@ -762,6 +764,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\Views\Rentals\Index.js" />
     <Content Include="Scripts\Views\Rentals\RentalForm.js" />
     <Content Include="Scripts\Views\Shared\DeleteModal.js" />
     <Content Include="Web.config" />

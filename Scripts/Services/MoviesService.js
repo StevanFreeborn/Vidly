@@ -13,7 +13,7 @@ export default class MoviesService {
     }
 
     deleteMovie = async (id) => {
-        const url = endpoints.GetDeleteMovieUrl(id);
+        const url = endpoints.getDeleteMovieUrl(id);
         return await fetch(url, { method: 'DELETE' });
     }
 }

@@ -43,5 +43,10 @@ namespace Vidly.Models
             if (NumberAvailable > 0) return true;
             return false;
         }
+
+        internal void CheckIn()
+        {
+            NumberAvailable++;
+        }
     }
 }

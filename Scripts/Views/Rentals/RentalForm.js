@@ -105,8 +105,8 @@ $(document).ready(function () {
 
             rentalsService.createRental(viewModel)
                 .then((res) => {
-                    if (!res.ok) return toastr.error('Could not create rentals. Please try again.');
-                    toastr.success('Rentals successfully recorded.');
+                    if (!res.ok) return toastr.error('Could not create rentals. Please try again.', null, { closeButton: true });
+                    toastr.success('Rentals successfully recorded.', null, { closeButton: true });
 
                     $('#customer').typeahead('val', '');
                     $('#movie').typeahead('val', '');
@@ -123,7 +123,7 @@ $(document).ready(function () {
                 })
                 .catch((err) => {
                     console.log(err);
-                    toastr.error('Could not create rentals. Please try again.');
+                    toastr.error('Could not create rentals. Please try again.', null, { closeButton: true });
                 });
         }
     });
