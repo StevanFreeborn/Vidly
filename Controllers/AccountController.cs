@@ -126,14 +126,14 @@ namespace Vidly.Controllers
         {
             if (ModelState.IsValid is false) return View(model);
 
-            var user = new ApplicationUser 
-            { 
+            var user = new ApplicationUser
+            {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                UserName = model.Email, 
+                UserName = model.Email,
                 Email = model.Email
             };
-            
+
             var result = await UserManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded is false)
@@ -144,11 +144,9 @@ namespace Vidly.Controllers
 
             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-            // Send an email with this link
-            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
             return RedirectToAction("Index", "Home");
         }
@@ -184,8 +182,6 @@ namespace Vidly.Controllers
             // Don't reveal that the user does not exist or is not confirmed
             if (user is null || result is false) return View("ForgotPasswordConfirmation");
 
-            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-            // Send an email with this link
             string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
 
             var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
@@ -220,7 +216,7 @@ namespace Vidly.Controllers
             if (user is null) return RedirectToAction("ResetPasswordConfirmation", "Account");
 
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            
+
             if (result.Succeeded is true) return RedirectToAction("ResetPasswordConfirmation", "Account");
 
             AddErrors(result);
@@ -248,7 +244,7 @@ namespace Vidly.Controllers
             var userId = await SignInManager.GetVerifiedUserIdAsync();
 
             if (userId is null) return View("Error");
-            
+
             var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
 
             var factorOptions = userFactors
@@ -269,7 +265,7 @@ namespace Vidly.Controllers
             var result = await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider);
 
             if (result is false) return View("Error");
-            
+
             return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
 
@@ -279,7 +275,7 @@ namespace Vidly.Controllers
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
 
             if (loginInfo is null) return RedirectToAction("Login");
-            
+
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
 
@@ -324,11 +320,11 @@ namespace Vidly.Controllers
             // to a different 3rd party provider for the first time
             // from the login page.
 
-            var user = new ApplicationUser 
-            { 
+            var user = new ApplicationUser
+            {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                UserName = model.Email, 
+                UserName = model.Email,
                 Email = model.Email
             };
 
@@ -415,7 +411,7 @@ namespace Vidly.Controllers
             var result = Url.IsLocalUrl(returnUrl);
 
             if (result is true) return Redirect(returnUrl);
-            
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -441,7 +437,7 @@ namespace Vidly.Controllers
                 var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
 
                 if (UserId != null) properties.Dictionary[XsrfKey] = UserId;
-                
+
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }

@@ -9,13 +9,15 @@
 
         <div class="col-12">
 
-            <h2>@ViewBag.Title</h2>
+            <h1 class="display-6">@ViewBag.Title</h1>
+
+            <h2 class="lead">Create a new account.</h2>
+
+            <hr />
 
             @using (Html.BeginForm("Register", "Account"))
             {
-                <h4>Create a new account.</h4>
-
-                <hr />
+                @Html.ValidationSummary("", new { @class = "text-danger" })
 
                 <div class="mb-3">
                     @Html.LabelFor(m => m.FirstName, new { @class = "form-label" })

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -6,16 +7,26 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using Vidly.Models;
 
 namespace Vidly
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var apiKey = ConfigurationManager.AppSettings["SendGridApiKey"];
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("support@vidly.stevanfreeborn.com", "Vidly Support");
+            var to = new EmailAddress(message.Destination);
+            var subject = message.Subject;
+            var plainTextContent = message.Body;
+            var htmlContent = message.Body;
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            
+            await client.SendEmailAsync(msg);
         }
     }
 
@@ -67,19 +78,25 @@ namespace Vidly
             {
                 MessageFormat = "Your security code is {0}"
             });
+
             manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<ApplicationUser>
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
             });
+
             manager.EmailService = new EmailService();
+
             manager.SmsService = new SmsService();
+
             var dataProtectionProvider = options.DataProtectionProvider;
+            
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
+
             return manager;
         }
     }
@@ -87,8 +104,7 @@ namespace Vidly
     // Configure the application sign-in manager which is used in this application.
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
-        public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
-            : base(userManager, authenticationManager)
+        public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager) : base(userManager, authenticationManager)
         {
         }
 
