@@ -769,7 +769,8 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\Views\Rentals\Index.js" />
-    <Content Include="Scripts\Views\Rentals\RentalForm.js" />
+    <Content Include="Scripts\Views\Rentals\RentalEditModal.js" />
+    <Content Include="Scripts\Views\Rentals\RentalsForm.js" />
     <Content Include="Scripts\Views\Shared\DeleteModal.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -820,7 +821,7 @@
     <Content Include="Scripts\lib\popper-utils.min.js.map" />
     <Content Include="Scripts\lib\popper-utils.js.map" />
     <Content Include="Views\Movies\MovieForm.cshtml" />
-    <Content Include="Views\Rentals\RentalForm.cshtml" />
+    <Content Include="Views\Rentals\RentalsForm.cshtml" />
     <Content Include="Views\Rentals\Index.cshtml" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.woff2" />

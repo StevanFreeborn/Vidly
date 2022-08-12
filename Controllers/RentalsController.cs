@@ -11,7 +11,7 @@ namespace Vidly.Controllers
 
         public ActionResult Add()
         {
-            return View("RentalForm");
+            return View("RentalsForm");
         }
     }
 }

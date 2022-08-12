@@ -1,4 +1,5 @@
 ﻿import RenderDeleteModal from '../Shared/DeleteModal.js';
+import RenderRentalEditModal from './RentalEditModal.js'
 import { deleteRentalErrorMessage } from '../../Constants/ErrorMessages.js';
 import { deleteRentalSuccessMessage } from '../../Constants/SuccessMessages.js';
 import RentalsService from '../../Services/RentalsService.js';
@@ -27,9 +28,7 @@ const CreateRentalsTable = () => {
             {
                 title: 'Rental Id',
                 data: 'id',
-                render: (id) => {
-                    return `<a href="/rentals/edit/${id}" class="m-2"><i class="fa-solid fa-pencil text-primary"></i></a><span>${id}</span>`;
-                },
+                render: RenderRentalEditModal,
                 responsivePriority: 1,
             },
             {
@@ -61,16 +60,28 @@ const CreateRentalsTable = () => {
             {
                 title: 'Delete',
                 data: 'id',
-                render: RenderDeleteModal,
+                render: (id, type, rental) => {
+                    return `<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" data-bs-rental-id="${id}"><i class="fa-solid fa-trash"></i> Delete</button>`;
+                },
                 responsivePriority: 2,
             },
         ],
     });
 
-    $('#rentals-table').on('click', '.btn-delete', (e) => {
+    $('#delete-modal').on('show.bs.modal', (e) => {
+
+        var button = $(e.relatedTarget);
+        var rentalId = button.attr('data-bs-rental-id');
+        console.log(rentalId);
+
+        $('#delete-button').attr('data-rental-id', rentalId);
+
+    })
+
+    $('#delete-button').on('click', (e) => {
         const button = $(e.currentTarget);
 
-        const rentalId = button.attr('data-id');
+        const rentalId = button.attr('data-rental-id');
 
         rentalsService
             .deleteRental(rentalId)
