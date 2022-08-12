@@ -27,7 +27,9 @@ namespace Vidly.Controllers.Api
         {
             var rentalDtos = _context.Rentals
                 .Include(r => r.Movie)
+                .Include(r => r.Movie.Genre)
                 .Include(r => r.Customer)
+                .Include(r => r.Customer.MembershipType)
                 .ToList()
                 .Select(_mapper.Map<RentalDto>);
 

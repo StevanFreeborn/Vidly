@@ -1,5 +1,5 @@
 ﻿export default function RenderRentalEditModal(id) {
-    return `<a role="button" class="m-2" data-bs-toggle="modal" data-bs-target="#rental-edit-modal-${id}" data-bs-rental-id="${id}"><i class="fa-solid fa-pencil text-primary"></i></a><span>${id}</span>
+    return `<a role="button" class="m-2" data-bs-toggle="modal" data-bs-target="#rental-edit-modal" data-bs-rental-id="${id}"><i class="fa-solid fa-pencil text-primary"></i></a><span>${id}</span>
             <div class="modal fade edit-rental-modal" id="rental-edit-modal-${id}" tabindex="-1" aria-labelledby="RentalEditModalLabel" aria-hidden="true">
 
                 <div class="modal-dialog modal-dialog-centered">

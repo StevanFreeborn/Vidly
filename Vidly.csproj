@@ -771,7 +771,6 @@
     <Content Include="Scripts\Views\Rentals\Index.js" />
     <Content Include="Scripts\Views\Rentals\RentalEditModal.js" />
     <Content Include="Scripts\Views\Rentals\RentalsForm.js" />
-    <Content Include="Scripts\Views\Shared\DeleteModal.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -832,6 +831,7 @@
     <Content Include="webfonts\fa-v4compatibility.ttf" />
     <Content Include="webfonts\fa-v4compatibility.woff2" />
     <Content Include="Views\Shared\_DeleteModal.cshtml" />
+    <Content Include="Views\Rentals\_EditRentalModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

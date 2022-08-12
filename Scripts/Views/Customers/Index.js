@@ -65,26 +65,5 @@ const CreateCustomersTable = () => {
                     toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
                 });
         });
-
     });
-
-    //$('#customers-table').on('click', '.btn-delete', (e) => {
-    //    const button = $(e.currentTarget);
-
-    //    const customerId = button.attr('data-id');
-
-    //    customersService
-    //        .deleteCustomer(customerId)
-    //        .then((res) => {
-    //            if (!res.ok) return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
-
-    //            toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
-
-    //            table.row(button.parents('tr')).remove().draw(false);
-    //        })
-    //        .catch((err) => {
-    //            console.log(err);
-    //            toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
-    //        });
-    //});
 };

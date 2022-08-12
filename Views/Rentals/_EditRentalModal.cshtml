@@ -1,0 +1,60 @@
+﻿<div class="modal fade" id="edit-rental-modal" tabindex="-1" aria-labelledby="EditRentalModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="EditRentalModal">Edit Rental</h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form id="updatedRental">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Rental Id</label>
+                        <input id="rental-id" name="rentalId" type="text" value="" class="form-control-plaintext" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Customer</label>
+                        <input id="customer-name" name="customerName" type="text" value="" class="form-control-plaintext" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Movie</label>
+                        <input id="movie-name" name="movieName" type="text" value="" class="form-control-plaintext" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Date Rented</label>
+                        <input id="date-rented" name="dateRented" type="text" value="" class="form-control-plaintext" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Date Returned</label>
+                        <input id="date-returned" name="dateReturned" type="date" value="" class="form-control" />
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                        <button id="save-button" type="submit" class="btn btn-success" data-bs-dismiss="modal">Save</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

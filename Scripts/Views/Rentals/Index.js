@@ -27,7 +27,9 @@ const CreateRentalsTable = () => {
             {
                 title: 'Rental Id',
                 data: 'id',
-                render: RenderRentalEditModal,
+                render: (id, type, rental) => {
+                    return `<a role="button" class="m-2" data-bs-toggle="modal" data-bs-target="#edit-rental-modal"><i class="fa-solid fa-pencil text-primary"></i></a><span>${id}</span>`
+                },
                 responsivePriority: 1,
             },
             {
@@ -67,9 +69,24 @@ const CreateRentalsTable = () => {
         ],
     });
 
-    $('#delete-modal').on('show.bs.modal', (e) => {
-
+    $('#edit-rental-modal').on('show.bs.modal', (e) => {
         const button = $(e.relatedTarget);
+        const rental = table.row(button.parents('tr')).data();
+
+        $('#rental-id').attr('value', rental.id);
+        $('#customer-name').attr('value', rental.customer.name);
+        $('#movie-name').attr('value', rental.movie.name);
+
+        var dateRented = new Date(rental.dateRented).toLocaleDateString();
+
+        $('#date-rented').attr('value', dateRented);
+
+    });
+
+    $('#delete-modal').on('show.bs.modal', (e) => {
+        const button = $(e.relatedTarget);
+
+
 
         const rentalId = button.attr('data-bs-rental-id');
 
