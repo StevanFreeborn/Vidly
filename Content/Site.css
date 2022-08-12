@@ -37,3 +37,12 @@ input.error {
 .btn:focus:active {
     box-shadow: none;
 }
+
+table.dataTable tbody td {
+    vertical-align: middle;
+}
+
+table.dataTable.dtr-column > tbody > tr > td.dtr-control:before,
+table.dataTable.dtr-column > tbody > tr.parent td.dtr-control:before {
+    background-color: #158cba;
+}

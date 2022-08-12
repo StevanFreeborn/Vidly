@@ -10,15 +10,26 @@ $(document).ready(() => {
 
 const CreateMoviesTable = () => {
     const table = $('#movies-table').DataTable({
-        responsive: true,
+        order: [[1, 'asc']],
+        responsive: {
+            details: {
+                type: 'column',
+            }
+        },
         ajax: moviesService.getMoviesTableData(),
         columns: [
+            {
+                orderable: false,
+                defaultContent: '',
+                className: 'dtr-control px-3',
+            },
             {
                 title: 'Name',
                 data: 'name',
                 render: (data, type, movie) => {
-                    return `<a href="/movies/edit/${movie.id}">${movie.name}</a>`;
+                    return `<a href="/movies/edit/${movie.id}" class="m-2"><i class="fa-solid fa-pencil text-primary"></i></a><span>${movie.name}</span>`;
                 },
+                responsivePriority: 1,
             },
             {
                 title: 'Genre',
@@ -36,6 +47,7 @@ const CreateMoviesTable = () => {
                 title: 'Delete',
                 data: 'id',
                 render: RenderDeleteModal,
+                responsivePriority: 2,
             },
         ],
     });

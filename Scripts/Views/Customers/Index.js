@@ -10,15 +10,26 @@ $(document).ready(() => {
 
 const CreateCustomersTable = () => {
     const table = $('#customers-table').DataTable({
-        responsive: true,
+        order: [[1, 'asc']],
+        responsive: {
+            details: {
+                type: 'column',
+            }
+        },
         ajax: customersService.getCustomersTableData(),
         columns: [
+            {
+                orderable: false,
+                defaultContent: '',
+                className: 'dtr-control px-3',
+            },
             {
                 title: 'Name',
                 data: 'name',
                 render: (data, type, customer) => {
-                    return `<a href="/customers/edit/${customer.id}">${customer.name}</a>`;
+                    return `<a href="/customers/edit/${customer.id}" class="m-2"><i class="fa-solid fa-pencil text-primary"></i></a><span>${customer.name}</span>`;
                 },
+                responsivePriority: 1,
             },
             {
                 title: 'Membership Type',
@@ -28,6 +39,7 @@ const CreateCustomersTable = () => {
                 title: 'Delete',
                 data: 'id',
                 render: RenderDeleteModal,
+                responsivePriority: 2,
             },
         ],
     });

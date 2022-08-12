@@ -7,9 +7,19 @@ $(document).ready(() => {
 
 const CreateMoviesTable = () => {
     $('#movies-table').DataTable({
-        responsive: true,
+        order: [[1, 'asc']],
+        responsive: {
+            details: {
+                type: 'column',
+            }
+        },
         ajax: moviesService.getMoviesTableData(),
         columns: [
+            {
+                orderable: false,
+                defaultContent: '',
+                className: 'dtr-control px-3',
+            },
             {
                 title: 'Name',
                 data: 'name',

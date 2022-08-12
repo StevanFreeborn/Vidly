@@ -1,5 +1,5 @@
 ﻿export default function RenderDeleteModal(id) {
-    return `<button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-modal-${id}">Delete</button>
+    return `<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal-${id}"><i class="fa-solid fa-trash"></i> Delete</button>
             <div class="modal fade" id="delete-modal-${id}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 
                 <div class="modal-dialog modal-dialog-centered">
@@ -24,12 +24,12 @@
 
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 
-                            <button data-id="${id}" type="button" class="btn btn-danger btn-delete" data-bs-dismiss="modal">Delete</button>
+                            <button data-id="${id}" type="button" class="btn btn-danger btn-delete" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
 
                         </div>
 
                     </div>
-                
+
                 </div>
 
             </div>`

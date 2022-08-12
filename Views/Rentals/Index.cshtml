@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Index";
 }
@@ -28,7 +28,7 @@
 
         <div class="col-12">
 
-            <table id="rentals-table" class="table table-bordered table-hover nowrap w-100">
+            <table id="rentals-table" class="table table-hover nowrap w-100">
 
                 <thead>
                 </thead>
@@ -47,4 +47,7 @@
 @section scripts
 {
     <script type="module" src="~/Scripts/Views/Rentals/Index.js"></script>
+    <script>
+        var user = '@User.ToString()';
+    </script>
 }

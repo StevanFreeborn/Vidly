@@ -5,20 +5,44 @@ import RentalsService from '../../Services/RentalsService.js';
 const rentalsService = new RentalsService();
 
 $(document).ready(() => {
+    console.log('@User.ToString()');
     CreateRentalsTable();
 });
 
 const CreateRentalsTable = () => {
     const table = $('#rentals-table').DataTable({
-        responsive: true,
+        order: [[1, 'asc']],
+        responsive: {
+            details: {
+                type: 'column',
+            }
+        },
         ajax: rentalsService.getRentalsTableData(),
         columns: [
+            {
+                
+                orderable: false,
+                defaultContent: '',
+                className: 'dtr-control px-3',
+            },
             {
                 title: 'Rental Id',
                 data: 'id',
                 render: (id) => {
-                    return `<a href="/rentals/edit/${id}">${id}</a>`;
+                    return `<a href="/rentals/edit/${id}" class="m-2"><i class="fa-solid fa-pencil text-primary"></i></a><span>${id}</span>`;
                 },
+                responsivePriority: 1,
+            },
+            {
+                title: 'Customer',
+                data: 'customer.name',
+                render: (name, type, rental) => {
+                    return `<a href="/customers/edit/${rental.customer.id}" class="m-2"><i class="fa-solid fa-pencil text-primary"></i></a><span>${name}</span>`;
+                },
+            },
+            {
+                title: 'Movie',
+                data: 'movie.name',
             },
             {
                 title: 'Date Rented',
@@ -28,20 +52,18 @@ const CreateRentalsTable = () => {
                 },
             },
             {
-                title: 'Name',
-                data: 'customer.name',
-                render: (name, type, rental) => {
-                    return `<a href="/customers/edit/${rental.customer.id}">${name}</a>`;
+                title: 'Date Returned',
+                data: 'dateReturned',
+                render: (date) => {
+                    if (date == null) return null;
+                    return new Date(date).toLocaleDateString();
                 },
-            },
-            {
-                title: 'Movie',
-                data: 'movie.name',
             },
             {
                 title: 'Delete',
                 data: 'id',
                 render: RenderDeleteModal,
+                responsivePriority: 2,
             },
         ],
     });
