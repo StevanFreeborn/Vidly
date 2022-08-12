@@ -5,7 +5,6 @@ import RentalsService from '../../Services/RentalsService.js';
 const rentalsService = new RentalsService();
 
 $(document).ready(() => {
-    console.log('@User.ToString()');
     CreateRentalsTable();
 });
 

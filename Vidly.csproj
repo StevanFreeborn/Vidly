@@ -367,6 +367,7 @@
     <Content Include="Content\DataTables\css\dataTables.bootstrap4.css" />
     <Content Include="Content\DataTables\css\dataTables.bootstrap4.min.css" />
     <Content Include="Content\DataTables\css\dataTables.bootstrap5.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap5.min.css" />
     <Content Include="Content\DataTables\css\dataTables.foundation.css" />
     <Content Include="Content\DataTables\css\dataTables.foundation.min.css" />
     <Content Include="Content\DataTables\css\dataTables.jqueryui.css" />
@@ -421,6 +422,7 @@
     <Content Include="Content\DataTables\css\responsive.bootstrap4.css" />
     <Content Include="Content\DataTables\css\responsive.bootstrap4.min.css" />
     <Content Include="Content\DataTables\css\responsive.bootstrap5.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap5.min.css" />
     <Content Include="Content\DataTables\css\responsive.dataTables.css" />
     <Content Include="Content\DataTables\css\responsive.dataTables.min.css" />
     <Content Include="Content\DataTables\css\responsive.foundation.css" />
@@ -531,6 +533,8 @@
     </Content>
     <Content Include="Scripts\Constants\ApiEndpoints.js" />
     <Content Include="Scripts\Constants\SuccessMessages.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap5.min.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap5.min.js" />
     <Content Include="Scripts\lib\bloodhound.js" />
     <Content Include="Scripts\lib\bloodhound.min.js" />
     <Content Include="Scripts\Constants\ErrorMessages.js" />
@@ -818,6 +822,14 @@
     <Content Include="Views\Movies\MovieForm.cshtml" />
     <Content Include="Views\Rentals\RentalForm.cshtml" />
     <Content Include="Views\Rentals\Index.cshtml" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
+    <Content Include="webfonts\fa-v4compatibility.ttf" />
+    <Content Include="webfonts\fa-v4compatibility.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
