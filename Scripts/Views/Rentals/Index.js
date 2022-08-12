@@ -1,5 +1,4 @@
-﻿import RenderDeleteModal from '../Shared/DeleteModal.js';
-import RenderRentalEditModal from './RentalEditModal.js'
+﻿import RenderRentalEditModal from './RentalEditModal.js'
 import { deleteRentalErrorMessage } from '../../Constants/ErrorMessages.js';
 import { deleteRentalSuccessMessage } from '../../Constants/SuccessMessages.js';
 import RentalsService from '../../Services/RentalsService.js';
@@ -70,31 +69,25 @@ const CreateRentalsTable = () => {
 
     $('#delete-modal').on('show.bs.modal', (e) => {
 
-        var button = $(e.relatedTarget);
-        var rentalId = button.attr('data-bs-rental-id');
-        console.log(rentalId);
+        const button = $(e.relatedTarget);
 
-        $('#delete-button').attr('data-rental-id', rentalId);
+        const rentalId = button.attr('data-bs-rental-id');
 
+        $('#delete-button').on('click', () => {
+
+            rentalsService
+                .deleteRental(rentalId)
+                .then((res) => {
+                    if (!res.ok) return toastr.error(deleteRentalErrorMessage, null, { closeButton: true });
+
+                    toastr.success(deleteRentalSuccessMessage, null, { closeButton: true });
+
+                    table.row(button.parents('tr')).remove().draw(false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toastr.error(deleteRentalErrorMessage, null, { closeButton: true });
+                });
+        });
     })
-
-    $('#delete-button').on('click', (e) => {
-        const button = $(e.currentTarget);
-
-        const rentalId = button.attr('data-rental-id');
-
-        rentalsService
-            .deleteRental(rentalId)
-            .then((res) => {
-                if (!res.ok) return toastr.error(deleteRentalErrorMessage, null, { closeButton: true });
-
-                toastr.success(deleteRentalSuccessMessage, null, { closeButton: true });
-
-                table.row(button.parents('tr')).remove().draw(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                toastr.error(deleteRentalErrorMessage, null, { closeButton: true });
-            });
-    });
 };

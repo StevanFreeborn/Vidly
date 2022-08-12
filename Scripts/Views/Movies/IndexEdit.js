@@ -1,5 +1,4 @@
-﻿import RenderDeleteModal from '../Shared/DeleteModal.js';
-import { deleteMovieErrorMessage } from '../../Constants/ErrorMessages.js';
+﻿import { deleteMovieErrorMessage } from '../../Constants/ErrorMessages.js';
 import { deleteMovieSuccessMessage } from '../../Constants/SuccessMessages.js';
 import MoviesService from '../../Services/MoviesService.js';
 const moviesService = new MoviesService();
@@ -46,29 +45,34 @@ const CreateMoviesTable = () => {
             {
                 title: 'Delete',
                 data: 'id',
-                render: RenderDeleteModal,
+                render: (id, type, rental) => {
+                    return `<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" data-bs-movie-id="${id}"><i class="fa-solid fa-trash"></i> Delete</button>`;
+                },
                 responsivePriority: 2,
             },
         ],
     });
 
-    $('#movies-table').on('click', '.btn-delete', (e) => {
-        const button = $(e.currentTarget);
+    $('#delete-modal').on('show.bs.modal', (e) => {
+        const button = $(e.relatedTarget);
 
-        const movieId = button.attr('data-id');
+        const movieId = button.attr('data-bs-movie-id');
 
-        moviesService
-            .deleteMovie(movieId)
-            .then((res) => {
-                if (!res.ok) return toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
+        $('#delete-button').on('click', () => {
+            moviesService
+                .deleteMovie(movieId)
+                .then((res) => {
+                    if (!res.ok) return toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
 
-                toastr.success(deleteMovieSuccessMessage, null, { closeButton: true })
+                    toastr.success(deleteMovieSuccessMessage, null, { closeButton: true })
 
-                table.row(button.parents('tr')).remove().draw(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
-            });
+                    table.row(button.parents('tr')).remove().draw(false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
+                });
+        });
+
     });
 };

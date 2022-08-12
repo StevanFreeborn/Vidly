@@ -1,5 +1,4 @@
-﻿import RenderDeleteModal from '../Shared/DeleteModal.js';
-import { deleteCustomerErrorMessage } from '../../Constants/ErrorMessages.js';
+﻿import { deleteCustomerErrorMessage } from '../../Constants/ErrorMessages.js';
 import { deleteCustomerSuccessMessage } from '../../Constants/SuccessMessages.js';
 import CustomersService from '../../Services/CustomersService.js';
 const customersService = new CustomersService();
@@ -38,29 +37,54 @@ const CreateCustomersTable = () => {
             {
                 title: 'Delete',
                 data: 'id',
-                render: RenderDeleteModal,
+                render: (id, type, rental) => {
+                    return `<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" data-bs-customer-id="${id}"><i class="fa-solid fa-trash"></i> Delete</button>`;
+                },
                 responsivePriority: 2,
             },
         ],
     });
 
-    $('#customers-table').on('click', '.btn-delete', (e) => {
-        const button = $(e.currentTarget);
+    $('#delete-modal').on('show.bs.modal', (e) => {
+        const button = $(e.relatedTarget);
 
-        const customerId = button.attr('data-id');
+        const customerId = button.attr('data-bs-customer-id');
 
-        customersService
-            .deleteCustomer(customerId)
-            .then((res) => {
-                if (!res.ok) return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
+        $('#delete-button').on('click', () => {
+            customersService
+                .deleteCustomer(customerId)
+                .then((res) => {
+                    if (!res.ok) return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
 
-                toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
+                    toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
 
-                table.row(button.parents('tr')).remove().draw(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
-            });
+                    table.row(button.parents('tr')).remove().draw(false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
+                });
+        });
+
     });
+
+    //$('#customers-table').on('click', '.btn-delete', (e) => {
+    //    const button = $(e.currentTarget);
+
+    //    const customerId = button.attr('data-id');
+
+    //    customersService
+    //        .deleteCustomer(customerId)
+    //        .then((res) => {
+    //            if (!res.ok) return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
+
+    //            toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
+
+    //            table.row(button.parents('tr')).remove().draw(false);
+    //        })
+    //        .catch((err) => {
+    //            console.log(err);
+    //            toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
+    //        });
+    //});
 };
