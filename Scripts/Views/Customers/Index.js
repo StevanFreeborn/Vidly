@@ -9,21 +9,28 @@ $(document).ready(() => {
     $('#delete-modal').on('show.bs.modal', (e) => {
         const button = $(e.relatedTarget);
 
+        const row = table.row(button.parents('tr'));
+
         const customerId = button.attr('data-bs-customer-id');
 
-        $('#delete-button').on('click', () => {
+        var deleteButton = $('#delete-button').on('click', () => {
             customersService
                 .deleteCustomer(customerId)
                 .then((res) => {
+                    deleteButton.off('click');
+
                     if (!res.ok) return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
 
-                    toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
+                    row.remove().draw(false);
 
-                    table.row(button.parents('tr')).remove().draw(false);
+                    return toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
                 })
                 .catch((err) => {
                     console.log(err);
-                    toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
+
+                    deleteButton.off('click');
+
+                    return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
                 });
         });
     });

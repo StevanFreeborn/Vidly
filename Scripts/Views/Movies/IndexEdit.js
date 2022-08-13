@@ -9,21 +9,28 @@ $(document).ready(() => {
     $('#delete-modal').on('show.bs.modal', (e) => {
         const button = $(e.relatedTarget);
 
+        const row = table.row(button.parents('tr'));
+
         const movieId = button.attr('data-bs-movie-id');
 
-        $('#delete-button').on('click', () => {
+        var deleteButton = $('#delete-button').on('click', () => {
             moviesService
                 .deleteMovie(movieId)
                 .then((res) => {
+                    deleteButton.off('click');
+
                     if (!res.ok) return toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
 
-                    toastr.success(deleteMovieSuccessMessage, null, { closeButton: true })
+                    row.remove().draw(false);
 
-                    table.row(button.parents('tr')).remove().draw(false);
+                    return toastr.success(deleteMovieSuccessMessage, null, { closeButton: true });
                 })
                 .catch((err) => {
                     console.log(err);
-                    toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
+
+                    deleteButton.off('click');
+
+                    return toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
                 });
         });
     });

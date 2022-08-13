@@ -23,7 +23,7 @@ namespace Vidly.Dtos
         public Movie Movie { get; set; }
 
         [Required]
-        public DateTime DateRented { get; set; }
+        public DateTime DateRented { get; set; } = DateTime.Now;
 
         public DateTime? DateReturned { get; set; }
     }
