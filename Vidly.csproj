@@ -769,7 +769,6 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\Views\Rentals\Index.js" />
-    <Content Include="Scripts\Views\Rentals\RentalEditModal.js" />
     <Content Include="Scripts\Views\Rentals\RentalsForm.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

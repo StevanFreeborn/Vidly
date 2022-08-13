@@ -32,7 +32,7 @@ namespace Vidly.App_Start
             CreateMap<GenreDto, Genre>().ForMember(g => g.Id, opt => opt.Ignore());
 
             CreateMap<Rental, RentalDto>();
-            CreateMap<RentalDto, Rental>();
+            CreateMap<RentalDto, Rental>().ForMember(r => r.Id, opt => opt.Ignore());
 
         }
     }

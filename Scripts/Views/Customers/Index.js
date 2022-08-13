@@ -4,11 +4,33 @@ import CustomersService from '../../Services/CustomersService.js';
 const customersService = new CustomersService();
 
 $(document).ready(() => {
-    CreateCustomersTable();
+    const table = CreateCustomersTable();
+
+    $('#delete-modal').on('show.bs.modal', (e) => {
+        const button = $(e.relatedTarget);
+
+        const customerId = button.attr('data-bs-customer-id');
+
+        $('#delete-button').on('click', () => {
+            customersService
+                .deleteCustomer(customerId)
+                .then((res) => {
+                    if (!res.ok) return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
+
+                    toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
+
+                    table.row(button.parents('tr')).remove().draw(false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
+                });
+        });
+    });
 });
 
 const CreateCustomersTable = () => {
-    const table = $('#customers-table').DataTable({
+    return $('#customers-table').DataTable({
         order: [[1, 'asc']],
         responsive: {
             details: {
@@ -43,27 +65,5 @@ const CreateCustomersTable = () => {
                 responsivePriority: 2,
             },
         ],
-    });
-
-    $('#delete-modal').on('show.bs.modal', (e) => {
-        const button = $(e.relatedTarget);
-
-        const customerId = button.attr('data-bs-customer-id');
-
-        $('#delete-button').on('click', () => {
-            customersService
-                .deleteCustomer(customerId)
-                .then((res) => {
-                    if (!res.ok) return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
-
-                    toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
-
-                    table.row(button.parents('tr')).remove().draw(false);
-                })
-                .catch((err) => {
-                    console.log(err);
-                    toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
-                });
-        });
     });
 };

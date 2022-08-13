@@ -1,15 +1,84 @@
-﻿import RenderRentalEditModal from './RentalEditModal.js'
-import { deleteRentalErrorMessage } from '../../Constants/ErrorMessages.js';
+﻿import { deleteRentalErrorMessage } from '../../Constants/ErrorMessages.js';
 import { deleteRentalSuccessMessage } from '../../Constants/SuccessMessages.js';
 import RentalsService from '../../Services/RentalsService.js';
 const rentalsService = new RentalsService();
 
 $(document).ready(() => {
-    CreateRentalsTable();
+
+    const table = CreateRentalsTable();
+
+    $('#edit-rental-modal').on('show.bs.modal', (e) => {
+        const button = $(e.relatedTarget);
+        const rental = table.row(button.parents('tr')).data();
+
+        $('#rental-id').attr('value', rental.id);
+        $('#customer-name').attr('value', rental.customer.name);
+        $('#movie-name').attr('value', rental.movie.name);
+
+        const dateRented = new Date(rental.dateRented).toLocaleDateString();
+
+        $('#date-rented').attr('value', dateRented);
+
+        const updatedRental = {
+            id: rental.id,
+            customerId: rental.customer.id,
+            movieId: rental.movie.id,
+            dateRented: rental.dateRented,
+            dateReturned: null,
+        };
+
+        console.log(updatedRental);
+
+        $('#date-returned').on('input', (e) => {
+            updatedRental.dateReturned = e.target.value;
+        });
+
+        $('#save-button').on('click', (e) => {
+            e.preventDefault();
+
+            rentalsService
+                .updateRental(updatedRental)
+                .then((res) => {
+                    if (!res.ok) return toastr.error('Unable to update rental.', null, { closeButton: true });
+
+                    return toastr.success('Rental successfully updated.', null, { closeButton: true });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toastr.error('Unable to update rental.', null, { closeButton: true });
+                });
+
+        });
+
+    });
+
+    $('#delete-modal').on('show.bs.modal', (e) => {
+        const button = $(e.relatedTarget);
+
+        const rentalId = button.attr('data-bs-rental-id');
+
+        $('#delete-button').on('click', () => {
+
+            rentalsService
+                .deleteRental(rentalId)
+                .then((res) => {
+                    if (!res.ok) return toastr.error(deleteRentalErrorMessage, null, { closeButton: true });
+
+                    toastr.success(deleteRentalSuccessMessage, null, { closeButton: true });
+
+                    table.row(button.parents('tr')).remove().draw(false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toastr.error(deleteRentalErrorMessage, null, { closeButton: true });
+                });
+        });
+    })
+
 });
 
 const CreateRentalsTable = () => {
-    const table = $('#rentals-table').DataTable({
+    return $('#rentals-table').DataTable({
         order: [[1, 'asc']],
         responsive: {
             details: {
@@ -19,7 +88,7 @@ const CreateRentalsTable = () => {
         ajax: rentalsService.getRentalsTableData(),
         columns: [
             {
-                
+
                 orderable: false,
                 defaultContent: '',
                 className: 'dtr-control px-3',
@@ -68,43 +137,4 @@ const CreateRentalsTable = () => {
             },
         ],
     });
-
-    $('#edit-rental-modal').on('show.bs.modal', (e) => {
-        const button = $(e.relatedTarget);
-        const rental = table.row(button.parents('tr')).data();
-
-        $('#rental-id').attr('value', rental.id);
-        $('#customer-name').attr('value', rental.customer.name);
-        $('#movie-name').attr('value', rental.movie.name);
-
-        var dateRented = new Date(rental.dateRented).toLocaleDateString();
-
-        $('#date-rented').attr('value', dateRented);
-
-    });
-
-    $('#delete-modal').on('show.bs.modal', (e) => {
-        const button = $(e.relatedTarget);
-
-
-
-        const rentalId = button.attr('data-bs-rental-id');
-
-        $('#delete-button').on('click', () => {
-
-            rentalsService
-                .deleteRental(rentalId)
-                .then((res) => {
-                    if (!res.ok) return toastr.error(deleteRentalErrorMessage, null, { closeButton: true });
-
-                    toastr.success(deleteRentalSuccessMessage, null, { closeButton: true });
-
-                    table.row(button.parents('tr')).remove().draw(false);
-                })
-                .catch((err) => {
-                    console.log(err);
-                    toastr.error(deleteRentalErrorMessage, null, { closeButton: true });
-                });
-        });
-    })
 };

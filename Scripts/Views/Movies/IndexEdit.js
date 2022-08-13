@@ -4,11 +4,33 @@ import MoviesService from '../../Services/MoviesService.js';
 const moviesService = new MoviesService();
 
 $(document).ready(() => {
-    CreateMoviesTable();
+    const table = CreateMoviesTable();
+
+    $('#delete-modal').on('show.bs.modal', (e) => {
+        const button = $(e.relatedTarget);
+
+        const movieId = button.attr('data-bs-movie-id');
+
+        $('#delete-button').on('click', () => {
+            moviesService
+                .deleteMovie(movieId)
+                .then((res) => {
+                    if (!res.ok) return toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
+
+                    toastr.success(deleteMovieSuccessMessage, null, { closeButton: true })
+
+                    table.row(button.parents('tr')).remove().draw(false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
+                });
+        });
+    });
 });
 
 const CreateMoviesTable = () => {
-    const table = $('#movies-table').DataTable({
+    return $('#movies-table').DataTable({
         order: [[1, 'asc']],
         responsive: {
             details: {
@@ -51,28 +73,5 @@ const CreateMoviesTable = () => {
                 responsivePriority: 2,
             },
         ],
-    });
-
-    $('#delete-modal').on('show.bs.modal', (e) => {
-        const button = $(e.relatedTarget);
-
-        const movieId = button.attr('data-bs-movie-id');
-
-        $('#delete-button').on('click', () => {
-            moviesService
-                .deleteMovie(movieId)
-                .then((res) => {
-                    if (!res.ok) return toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
-
-                    toastr.success(deleteMovieSuccessMessage, null, { closeButton: true })
-
-                    table.row(button.parents('tr')).remove().draw(false);
-                })
-                .catch((err) => {
-                    console.log(err);
-                    toastr.error(deleteMovieErrorMessage, null, { closeButton: true });
-                });
-        });
-
     });
 };

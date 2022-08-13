@@ -75,6 +75,22 @@ namespace Vidly.Controllers.Api
             return Ok();
         }
 
+        [HttpPut]
+        public IHttpActionResult UpdateRental(int id, RentalDto rentalDto)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            var existingRental = _context.Rentals.SingleOrDefault(r => r.Id == id);
+
+            if (existingRental is null) return NotFound();
+
+            _mapper.Map(rentalDto, existingRental);
+
+            _context.SaveChanges();
+
+            return Ok(rentalDto);
+        }
+
         [HttpDelete]
         public void DeleteMovie(int id)
         {
