@@ -29,7 +29,6 @@ $(document).ready(() => {
         }
 
         $('#date-returned').on('input', (e) => {
-            console.log(e.target.value);
             if (!e.target.value) {
                 return updatedRental.dateReturned = e.target.value;
             }
