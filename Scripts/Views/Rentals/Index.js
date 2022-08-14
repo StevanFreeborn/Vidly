@@ -12,13 +12,7 @@ $(document).ready(() => {
         const row = table.row(button.parents('tr'));
         const rental = row.data();
 
-        const updatedRental = {
-            id: rental.id,
-            customerId: rental.customer.id,
-            movieId: rental.movie.id,
-            dateRented: rental.dateRented,
-            dateReturned: null,
-        };
+        const updatedRental = { ...rental };
 
         $('#rental-id').attr('value', rental.id);
         $('#customer-name').attr('value', rental.customer.name);
@@ -35,7 +29,11 @@ $(document).ready(() => {
         }
 
         $('#date-returned').on('input', (e) => {
-            updatedRental.dateReturned = new Date(e.target.value).toISOString().slice(0, -1);
+            console.log(e.target.value);
+            if (!e.target.value) {
+                return updatedRental.dateReturned = e.target.value;
+            }
+            return updatedRental.dateReturned = new Date(e.target.value).toISOString().slice(0, -1);
         });
 
         var saveButton = $('#save-button').on('click', (e) => {
@@ -143,7 +141,7 @@ const CreateRentalsTable = () => {
                 title: 'Date Returned',
                 data: 'dateReturned',
                 render: (date) => {
-                    if (date == null) return null;
+                    if (!date) return null;
                     return new Date(date).toLocaleDateString();
                 },
             },

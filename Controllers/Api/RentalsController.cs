@@ -80,9 +80,29 @@ namespace Vidly.Controllers.Api
         {
             if (!ModelState.IsValid) return BadRequest();
 
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == rentalDto.CustomerId);
+
+            if (customer is null) return BadRequest();
+
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == rentalDto.MovieId);
+
+            if (movie is null) return BadRequest();
+
+            if (rentalDto.DateReturned < rentalDto.DateRented) return BadRequest();
+
             var existingRental = _context.Rentals.SingleOrDefault(r => r.Id == id);
 
             if (existingRental is null) return NotFound();
+
+            if (existingRental.DateReturned == null && rentalDto.DateReturned != null)
+            {
+                movie.CheckIn();
+            }
+
+            if (existingRental.DateReturned != null && rentalDto.DateReturned == null)
+            {
+                movie.CheckOut();
+            }
 
             _mapper.Map(rentalDto, existingRental);
 
@@ -95,7 +115,7 @@ namespace Vidly.Controllers.Api
         public void DeleteMovie(int id)
         {
             var existingRental = _context.Rentals.Include(r => r.Movie).SingleOrDefault(r => r.Id == id);
-            
+
             if (existingRental is null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
