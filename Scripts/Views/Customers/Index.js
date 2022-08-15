@@ -1,15 +1,43 @@
-﻿import RenderDeleteModal from '../Shared/DeleteModal.js';
-import { deleteCustomerErrorMessage } from '../../Constants/ErrorMessages.js';
+﻿import { deleteCustomerErrorMessage } from '../../Constants/ErrorMessages.js';
 import { deleteCustomerSuccessMessage } from '../../Constants/SuccessMessages.js';
 import CustomersService from '../../Services/CustomersService.js';
 const customersService = new CustomersService();
 
 $(document).ready(() => {
-    CreateCustomersTable();
+    const table = CreateCustomersTable();
+
+    $('#delete-modal').on('show.bs.modal', (e) => {
+        const button = $(e.relatedTarget);
+
+        const row = table.row(button.parents('tr'));
+
+        const customerId = button.attr('data-bs-customer-id');
+
+        var deleteButton = $('#delete-button').on('click', () => {
+            customersService
+                .deleteCustomer(customerId)
+                .then((res) => {
+                    deleteButton.off('click');
+
+                    if (!res.ok) return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
+
+                    row.remove().draw(false);
+
+                    return toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
+                })
+                .catch((err) => {
+                    console.log(err);
+
+                    deleteButton.off('click');
+
+                    return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
+                });
+        });
+    });
 });
 
 const CreateCustomersTable = () => {
-    const table = $('#customers-table').DataTable({
+    return $('#customers-table').DataTable({
         order: [[1, 'asc']],
         responsive: {
             details: {
@@ -38,29 +66,11 @@ const CreateCustomersTable = () => {
             {
                 title: 'Delete',
                 data: 'id',
-                render: RenderDeleteModal,
+                render: (id, type, rental) => {
+                    return `<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" data-bs-customer-id="${id}"><i class="fa-solid fa-trash"></i> Delete</button>`;
+                },
                 responsivePriority: 2,
             },
         ],
-    });
-
-    $('#customers-table').on('click', '.btn-delete', (e) => {
-        const button = $(e.currentTarget);
-
-        const customerId = button.attr('data-id');
-
-        customersService
-            .deleteCustomer(customerId)
-            .then((res) => {
-                if (!res.ok) return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
-
-                toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
-
-                table.row(button.parents('tr')).remove().draw(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
-            });
     });
 };

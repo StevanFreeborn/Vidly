@@ -13,7 +13,6 @@ export default class RentalsService {
     }
 
     createRental = (rentalDto) => {
-
         var json = JSON.stringify(rentalDto);
 
         return fetch(this.endpoint, {
@@ -21,6 +20,20 @@ export default class RentalsService {
                 'Content-Type': 'application/json'
             },
             method: 'POST',
+            body: json,
+        })
+    }
+
+    updateRental = (rentalDto) => {
+        var json = JSON.stringify(rentalDto);
+
+        var url = endpoints.getUpdateRentalUrl(rentalDto.id);
+
+        return fetch(url, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT',
             body: json,
         })
     }

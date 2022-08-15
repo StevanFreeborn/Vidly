@@ -42,9 +42,14 @@
 
     </div>
 
+    @Html.Partial("_EditRentalModal")
+
+    @Html.Partial("_DeleteModal")
+
 </div>
 
 @section scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
     <script type="module" src="~/Scripts/Views/Rentals/Index.js"></script>
 }

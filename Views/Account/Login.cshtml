@@ -20,7 +20,7 @@
 
         <div id="loginForm" class="col-md-6">
 
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
             {
                 <h2 class="lead">Use a local account to log in.</h2>
 
@@ -29,13 +29,13 @@
                 @Html.ValidationSummary("", new { @class = "text-danger" })
 
                 <div class="mb-3">
-                    @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                    @Html.LabelFor(m => m.Email, new { @class = "form-label fw-bold" })
                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Email)
                 </div>
 
                 <div class="mb-3">
-                    @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                    @Html.LabelFor(m => m.Password, new { @class = "form-label fw-bold" })
                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>

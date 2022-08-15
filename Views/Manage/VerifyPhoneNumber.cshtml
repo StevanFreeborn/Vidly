@@ -22,7 +22,7 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="mb-3">
-                    @Html.LabelFor(m => m.Code, new { @class = "form-label" })
+                    @Html.LabelFor(m => m.Code, new { @class = "form-label fw-bold" })
                     @Html.TextBoxFor(m => m.Code, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Code)
                 </div>

@@ -7,13 +7,13 @@ namespace Vidly.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddFirstAndLastNameToApplicationUser : IMigrationMetadata
+    public sealed partial class AddMembershipTypes : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFirstAndLastNameToApplicationUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddMembershipTypes));
         
         string IMigrationMetadata.Id
         {
-            get { return "202208071724285_AddFirstAndLastNameToApplicationUser"; }
+            get { return "202208140342391_AddMembershipTypes"; }
         }
         
         string IMigrationMetadata.Source

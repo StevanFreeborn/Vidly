@@ -241,37 +241,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207262157305_InitialMigration.cs" />
-    <Compile Include="Migrations\202207262157305_InitialMigration.designer.cs">
-      <DependentUpon>202207262157305_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202208140257139_InitialMigration.cs" />
+    <Compile Include="Migrations\202208140257139_InitialMigration.designer.cs">
+      <DependentUpon>202208140257139_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207262158497_AddMembershipTypes.cs" />
-    <Compile Include="Migrations\202207262158497_AddMembershipTypes.designer.cs">
-      <DependentUpon>202207262158497_AddMembershipTypes.cs</DependentUpon>
+    <Compile Include="Migrations\202208140305134_AddCanManageMoviesRole.cs" />
+    <Compile Include="Migrations\202208140305134_AddCanManageMoviesRole.designer.cs">
+      <DependentUpon>202208140305134_AddCanManageMoviesRole.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207262205515_AddGenres.cs" />
-    <Compile Include="Migrations\202207262205515_AddGenres.designer.cs">
-      <DependentUpon>202207262205515_AddGenres.cs</DependentUpon>
+    <Compile Include="Migrations\202208140325405_AddGenres.cs" />
+    <Compile Include="Migrations\202208140325405_AddGenres.designer.cs">
+      <DependentUpon>202208140325405_AddGenres.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.cs" />
-    <Compile Include="Migrations\202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.designer.cs">
-      <DependentUpon>202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.cs</DependentUpon>
+    <Compile Include="Migrations\202208140342391_AddMembershipTypes.cs" />
+    <Compile Include="Migrations\202208140342391_AddMembershipTypes.designer.cs">
+      <DependentUpon>202208140342391_AddMembershipTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202208052306559_SeedUsers.cs" />
-    <Compile Include="Migrations\202208052306559_SeedUsers.designer.cs">
-      <DependentUpon>202208052306559_SeedUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208071724285_AddFirstAndLastNameToApplicationUser.cs" />
-    <Compile Include="Migrations\202208071724285_AddFirstAndLastNameToApplicationUser.designer.cs">
-      <DependentUpon>202208071724285_AddFirstAndLastNameToApplicationUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208090220019_AddRentalEntity.cs" />
-    <Compile Include="Migrations\202208090220019_AddRentalEntity.designer.cs">
-      <DependentUpon>202208090220019_AddRentalEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208090317445_AddNumberAvailableToMoviesClass.cs" />
-    <Compile Include="Migrations\202208090317445_AddNumberAvailableToMoviesClass.designer.cs">
-      <DependentUpon>202208090317445_AddNumberAvailableToMoviesClass.cs</DependentUpon>
+    <Compile Include="Migrations\202208140354001_MakeRentalMovieIdRequired.cs" />
+    <Compile Include="Migrations\202208140354001_MakeRentalMovieIdRequired.designer.cs">
+      <DependentUpon>202208140354001_MakeRentalMovieIdRequired.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -769,8 +757,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\Views\Rentals\Index.js" />
-    <Content Include="Scripts\Views\Rentals\RentalForm.js" />
-    <Content Include="Scripts\Views\Shared\DeleteModal.js" />
+    <Content Include="Scripts\Views\Rentals\RentalsForm.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -820,7 +807,7 @@
     <Content Include="Scripts\lib\popper-utils.min.js.map" />
     <Content Include="Scripts\lib\popper-utils.js.map" />
     <Content Include="Views\Movies\MovieForm.cshtml" />
-    <Content Include="Views\Rentals\RentalForm.cshtml" />
+    <Content Include="Views\Rentals\RentalsForm.cshtml" />
     <Content Include="Views\Rentals\Index.cshtml" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.woff2" />
@@ -830,6 +817,8 @@
     <Content Include="webfonts\fa-solid-900.woff2" />
     <Content Include="webfonts\fa-v4compatibility.ttf" />
     <Content Include="webfonts\fa-v4compatibility.woff2" />
+    <Content Include="Views\Shared\_DeleteModal.cshtml" />
+    <Content Include="Views\Rentals\_EditRentalModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -841,36 +830,27 @@
     <Content Include="Scripts\lib\jquery-3.6.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202207262157305_InitialMigration.resx">
-      <DependentUpon>202207262157305_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207262158497_AddMembershipTypes.resx">
-      <DependentUpon>202207262158497_AddMembershipTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207262205515_AddGenres.resx">
-      <DependentUpon>202207262205515_AddGenres.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.resx">
-      <DependentUpon>202207270353343_AddReleaseDateDateAddedAndNumberInStockToMovies.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208052306559_SeedUsers.resx">
-      <DependentUpon>202208052306559_SeedUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208071724285_AddFirstAndLastNameToApplicationUser.resx">
-      <DependentUpon>202208071724285_AddFirstAndLastNameToApplicationUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208090220019_AddRentalEntity.resx">
-      <DependentUpon>202208090220019_AddRentalEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208090317445_AddNumberAvailableToMoviesClass.resx">
-      <DependentUpon>202208090317445_AddNumberAvailableToMoviesClass.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\lib\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202208140257139_InitialMigration.resx">
+      <DependentUpon>202208140257139_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208140305134_AddCanManageMoviesRole.resx">
+      <DependentUpon>202208140305134_AddCanManageMoviesRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208140325405_AddGenres.resx">
+      <DependentUpon>202208140325405_AddGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208140342391_AddMembershipTypes.resx">
+      <DependentUpon>202208140342391_AddMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208140354001_MakeRentalMovieIdRequired.resx">
+      <DependentUpon>202208140354001_MakeRentalMovieIdRequired.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

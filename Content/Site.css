@@ -46,3 +46,7 @@ table.dataTable.dtr-column > tbody > tr > td.dtr-control:before,
 table.dataTable.dtr-column > tbody > tr.parent td.dtr-control:before {
     background-color: #158cba;
 }
+
+.pagination > li > a {
+    text-transform: none;
+}
