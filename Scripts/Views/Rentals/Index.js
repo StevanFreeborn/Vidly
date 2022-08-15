@@ -4,18 +4,19 @@ import RentalsService from '../../Services/RentalsService.js';
 const rentalsService = new RentalsService();
 
 $(document).ready(() => {
-
     const table = CreateRentalsTable();
 
     $('#edit-rental-modal').on('show.bs.modal', (e) => {
         const button = $(e.relatedTarget);
         const row = table.row(button.parents('tr'));
         const rental = row.data();
-
+        console.log(rental);
         const updatedRental = { ...rental };
 
         $('#rental-id').attr('value', rental.id);
+
         $('#customer-name').attr('value', rental.customer.name);
+
         $('#movie-name').attr('value', rental.movie.name);
 
         const dateRented = new Date(rental.dateRented).toLocaleDateString();
@@ -29,23 +30,41 @@ $(document).ready(() => {
         }
 
         $('#date-returned').on('input', (e) => {
-            if (!e.target.value) {
-                return updatedRental.dateReturned = e.target.value;
-            }
+            if (!e.target.value) return updatedRental.dateReturned = e.target.value;
             return updatedRental.dateReturned = new Date(e.target.value).toISOString().slice(0, -1);
         });
 
-        var saveButton = $('#save-button').on('click', (e) => {
+        const rentalForm = $('#update-rental-form');
+
+        $.validator.addMethod('valid-date-returned', () => {
+            if (!updatedRental.dateReturned) return true;
+            return updatedRental.dateReturned > updatedRental.dateRented;
+        }, 'Please enter a return date that is after the rented date.');
+
+        const validator = rentalForm.validate();
+
+        $('#edit-rental-modal').on('hidden.bs.modal', () => {
+            validator.resetForm();
+            rentalForm.find(".error").removeClass("error");
+            rentalForm[0].reset();
+            $('#date-returned').attr('value', '');
+            $('#save-button').off('click');
+        });
+
+        $('#save-button').on('click', (e) => {
             e.preventDefault();
+
+            if (!rentalForm.valid()) return false;
 
             rentalsService
                 .updateRental(updatedRental)
                 .then((res) => {
-                    saveButton.off('click');
-
-                    $('#update-rental-form')[0].reset();
-
                     if (!res.ok) return toastr.error('Unable to update rental.', null, { closeButton: true });
+
+                    const modalElement = $("#edit-rental-modal")[0];
+                    const modal = bootstrap.Modal.getInstance(modalElement);
+
+                    modal.hide();
 
                     rental.dateReturned = updatedRental.dateReturned;
 
@@ -55,9 +74,6 @@ $(document).ready(() => {
                 })
                 .catch((err) => {
                     console.error(err);
-
-                    saveButton.off('click');
-
                     return toastr.error('Oops something went wrong.', null, { closeButton: true });
                 });
         });
@@ -70,13 +86,11 @@ $(document).ready(() => {
 
         const rentalId = button.attr('data-bs-rental-id');
 
-        var deleteButton = $('#delete-button').on('click', () => {
+        $('#delete-button').on('click', () => {
 
             rentalsService
                 .deleteRental(rentalId)
                 .then((res) => {
-                    deleteButton.off('click');
-
                     if (!res.ok) return toastr.error(deleteRentalErrorMessage, null, { closeButton: true });
 
                     row.remove().draw(false);
@@ -87,11 +101,14 @@ $(document).ready(() => {
                 })
                 .catch((err) => {
                     console.error(err);
-                    deleteButton.off('click');
                     toastr.error(deleteRentalErrorMessage, null, { closeButton: true });
                 });
         });
     })
+
+    $('#delete-modal').on('hidden.bs.modal', () => {
+        $('#delete-button').off('click');
+    });
 });
 
 const CreateRentalsTable = () => {
@@ -114,7 +131,7 @@ const CreateRentalsTable = () => {
                 title: 'Rental Id',
                 data: 'id',
                 render: (id, type, rental) => {
-                    return `<a role="button" class="m-2" data-bs-toggle="modal" data-bs-target="#edit-rental-modal"><i class="fa-solid fa-pencil text-primary"></i></a><span>${id}</span>`
+                    return `<a role="button" class="m-2" data-bs-target="#edit-rental-modal" data-bs-toggle="modal"><i class="fa-solid fa-pencil text-primary"></i></a><span>${id}</span>`
                 },
                 responsivePriority: 1,
             },
