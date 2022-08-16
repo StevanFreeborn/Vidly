@@ -10,13 +10,10 @@ $(document).ready(() => {
         const button = $(e.relatedTarget);
         const row = table.row(button.parents('tr'));
         const rental = row.data();
-        console.log(rental);
         const updatedRental = { ...rental };
 
         $('#rental-id').attr('value', rental.id);
-
         $('#customer-name').attr('value', rental.customer.name);
-
         $('#movie-name').attr('value', rental.movie.name);
 
         const dateRented = new Date(rental.dateRented).toLocaleDateString();
@@ -81,13 +78,10 @@ $(document).ready(() => {
 
     $('#delete-modal').on('show.bs.modal', (e) => {
         const button = $(e.relatedTarget);
-
         const row = table.row(button.parents('tr'));
-
         const rentalId = button.attr('data-bs-rental-id');
 
         $('#delete-button').on('click', () => {
-
             rentalsService
                 .deleteRental(rentalId)
                 .then((res) => {

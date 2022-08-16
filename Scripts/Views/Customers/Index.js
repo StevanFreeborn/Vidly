@@ -8,17 +8,13 @@ $(document).ready(() => {
 
     $('#delete-modal').on('show.bs.modal', (e) => {
         const button = $(e.relatedTarget);
-
         const row = table.row(button.parents('tr'));
-
         const customerId = button.attr('data-bs-customer-id');
 
-        var deleteButton = $('#delete-button').on('click', () => {
+        $('#delete-button').on('click', () => {
             customersService
                 .deleteCustomer(customerId)
                 .then((res) => {
-                    deleteButton.off('click');
-
                     if (!res.ok) return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
 
                     row.remove().draw(false);
@@ -26,13 +22,15 @@ $(document).ready(() => {
                     return toastr.success(deleteCustomerSuccessMessage, null, { closeButton: true })
                 })
                 .catch((err) => {
-                    console.log(err);
-
-                    deleteButton.off('click');
+                    console.error(err);
 
                     return toastr.error(deleteCustomerErrorMessage, null, { closeButton: true });
                 });
         });
+    });
+
+    $('#delete-modal').on('hidden.bs.modal', () => {
+        $('#delete-button').off('click');
     });
 });
 
