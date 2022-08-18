@@ -656,7 +656,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
-    <Content Include="AppSettings.config">
+    <Content Include="DevAppSettings.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="libman.json" />
@@ -671,6 +671,9 @@
     <Content Include="Controllers\Api\Requests\RentalsTestRequests.http" />
     <Content Include="Content\Toastr\toastr.scss" />
     <Content Include="Content\Toastr\toastr.less" />
+    <Content Include="ProdAppSettings.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\Vidly - Web Deploy.pubxml" />
     <None Include="Scripts\lib\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\lib\jquery-3.6.0.js" />
